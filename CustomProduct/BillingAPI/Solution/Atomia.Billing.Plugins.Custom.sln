@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Billing.Plugins.ProvisioningPlugins.Custom", "..\ProvisioningPlugins\Atomia.Billing.Plugins.ProvisioningPlugins.Custom.csproj", "{68570E93-5314-40A5-B3AB-EB395DB69F33}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Atomia.Billing.Plugins.Custom.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DA304E2-286C-4EEE-9683-AEE2B36DCFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA304E2-286C-4EEE-9683-AEE2B36DCFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA304E2-286C-4EEE-9683-AEE2B36DCFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA304E2-286C-4EEE-9683-AEE2B36DCFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D53DDFC-163B-4F30-94E3-78AE30A58E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D53DDFC-163B-4F30-94E3-78AE30A58E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D53DDFC-163B-4F30-94E3-78AE30A58E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D53DDFC-163B-4F30-94E3-78AE30A58E38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68570E93-5314-40A5-B3AB-EB395DB69F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68570E93-5314-40A5-B3AB-EB395DB69F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68570E93-5314-40A5-B3AB-EB395DB69F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68570E93-5314-40A5-B3AB-EB395DB69F33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
