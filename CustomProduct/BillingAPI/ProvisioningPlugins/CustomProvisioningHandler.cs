@@ -59,6 +59,14 @@ namespace Atomia.Billing.Plugins.ProvisioningPlugins.Custom
                 throw new AtomiaProvisioningException(string.Format("Cannot add {0} service. Subscription does not have custom attribute CustomAttributeParam.", productDescription.ProvisioningService));
             }
 
+            string packageName = GetCustomProductProperty(productDescription, "defaultPackageName");
+            if (subscription.CustomAttributes != null && subscription.CustomAttributes.Any(ca => ca.Key == "ProvisioningPackage"))
+            {
+                packageName = subscription.CustomAttributes["ProvisioningPackage"];
+            }
+            // Ensuring that package exist, if not then adds that package
+            EnsurePackageExist(packageName, account.Name);
+
             string customAttributeParam = subscription.CustomAttributes["CustomAttributeParam"].ToLowerInvariant();
             string customServiceName = GetProductProperty(productDescription,  "linuxInstance"); // linuxInstance or windowsInstance
 
@@ -406,6 +414,35 @@ namespace Atomia.Billing.Plugins.ProvisioningPlugins.Custom
             }
 
             return service;
+        }
+        /// <summary>
+        /// Checks if package exists, and if not create package.
+        /// </summary>
+        /// <param name="packageName">Package to check.</param>
+        /// <param name="accountName">Account name.</param>
+        private void EnsurePackageExist(string packageName, string accountName)
+        {
+            ProvisioningPackage[] packages = coreService.ListPackagesForAccount(accountName);
+            if (!packages.Any(p => p.Name == packageName))
+            {
+                coreService.AddPackageForAccount(accountName, new ProvisioningPackage { Name = packageName }, new Dictionary<string, string>());
+            }
+        }
+
+        /// <summary>
+        /// Get custom product property
+        /// </summary>
+        /// <param name="productDescription">Custom product</param>
+        /// <param name="propertyName">Property name</param>
+        /// <returns>Property value</returns>
+        private string GetCustomProductProperty(CustomProduct productDescription, string propertyName)
+        {
+            if (productDescription.CustomProductProperties == null || !productDescription.CustomProductProperties.Cast<Property>().Any(cpp => cpp.Name == propertyName))
+            {
+                throw new AtomiaProvisioningException(string.Format("Custom product {0} has no propertiy {1} defined in AtomiaProvisioning section.", productDescription.Name, propertyName));
+            }
+
+            return productDescription.CustomProductProperties[propertyName].Value;
         }
     }
 }
