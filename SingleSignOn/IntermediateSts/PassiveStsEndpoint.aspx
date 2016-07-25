@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PassiveStsEndpoint.aspx.cs" Inherits="Atomia.Custom.IntermediateSts.PassiveStsEndpoint" %>

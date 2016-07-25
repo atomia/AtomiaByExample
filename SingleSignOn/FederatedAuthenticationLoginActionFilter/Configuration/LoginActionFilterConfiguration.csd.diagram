@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimalLanguageDiagram dslVersion="1.0.0.0" Id="885a3be7-ec40-4c5b-94db-83dad8e6f9eb" absoluteBounds="0, 0, 11, 8.5" name="LoginActionFilterConfiguration">
+  <configurationSectionModelMoniker Id="41aca721-ba15-4b5c-9abd-52d99ba2e85f" />
+  <nestedChildShapes>
+    <configurationSectionShape Id="0a18f28c-9c6a-4820-8344-c9f1e5415b1c" absoluteBounds="4, 1.625, 3.75, 1.59568359375" outlineDashStyle="Solid" outlineThickness="0.015625">
+      <configurationSectionMoniker name="/41aca721-ba15-4b5c-9abd-52d99ba2e85f/LoginActionFilterConfiguration" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67172dc2-f6aa-40c9-a49e-412aae7c2d06" absoluteBounds="4.015, 2.035, 3.7199999999999998, 0.8262939453125" name="AttributeProperties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6db7e02e-08bb-42d4-8c24-b272af62dd64" absoluteBounds="4.015, 2.8712939453125, 3.7199999999999998, 0.2493896484375" name="ElementProperties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </configurationSectionShape>
+  </nestedChildShapes>
+</minimalLanguageDiagram>
