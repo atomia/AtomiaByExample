@@ -12,6 +12,9 @@ Things that you should change:
 2. package name in transformation and in class
  
  Change CustomProduct to something like WebsiteProduct
+3. Update reference dlls with the latest from your Atomia installation
+
+ Have in mind that this will require rebuilds for new Atomia versions
 
 Make sure that you cover all flows with this methods
 ```
