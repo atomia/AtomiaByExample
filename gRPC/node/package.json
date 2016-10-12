@@ -1,0 +1,20 @@
+{
+  "name": "grpcexample",
+  "version": "1.0.0",
+  "description": "a gRPC client example for the Atomia Billing API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "google-protobuf": "^3.0.0",
+    "grpc": "^1.0.0",
+    "lodash": "^4.6.1",
+    "minimist": "^1.2.0",
+    "node-getopt": "^0.2.3",
+    "request": "^2.75.0"
+  }
+}
