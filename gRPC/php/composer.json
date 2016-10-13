@@ -1,0 +1,8 @@
+{
+  "name": "atomia/grpcexamples",
+  "description": "a gRPC client example for the Atomia Billing API",
+  "require": {
+    "ext-grpc": "*",
+    "grpc/grpc": "v1.0.0"
+  }
+}
