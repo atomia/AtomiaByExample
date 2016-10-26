@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
-package AtomiaBilling;
-option csharp_namespace = "Atomia.Billing.Core.Grpc";
+package AtomiaGrpcBilling;
+option csharp_namespace = "Atomia.Grpc.Billing";
 
 // Common data types
 
@@ -123,7 +123,7 @@ message NullableUnixTime {
 }
 
 // Api methods
-service AtomiaBillingGrpcApi {
+service AtomiaGrpcBilling {
 	/// Echoes the specified message.
 	rpc Echo (EchoRequest) returns (EchoReply) {}
 
@@ -603,6 +603,9 @@ service AtomiaBillingGrpcApi {
 
 	/// Get provisioning actions for subscriptions.
 	rpc GetProvisioningActionsForSubscriptions (GetProvisioningActionsForSubscriptionsRequest) returns (GetProvisioningActionsForSubscriptionsReply) {}
+
+	/// Lists the pending subscription termination requests.
+	rpc ListPendingSubscriptionTerminationRequests (ListPendingSubscriptionTerminationRequestsRequest) returns (ListPendingSubscriptionTerminationRequestsReply) {}
 
 	/// Creates the currency.
 	rpc CreateCurrency (CreateCurrencyRequest) returns (CreateCurrencyReply) {}
@@ -3727,6 +3730,20 @@ message GetProvisioningActionsForSubscriptionsRequest {
  */
 message GetProvisioningActionsForSubscriptionsReply {
 	repeated ProvisioningAction provisioningActions = 1; /// List of provisioning actions.
+}
+
+/**
+ * The ListPendingSubscriptionTerminationRequests method request.
+ */
+message ListPendingSubscriptionTerminationRequestsRequest {
+	repeated Guid subscriptionIds = 1; /// List of subscription ids.
+}
+
+/**
+ * The ListPendingSubscriptionTerminationRequests method reply.
+ */
+message ListPendingSubscriptionTerminationRequestsReply {
+	repeated SubscriptionTerminationRequest subscriptionTerminationRequests = 1; /// List of pending termination requests for given subscriptions.
 }
 
 /**
@@ -9539,3 +9556,25 @@ message StrRepeatedExecutingMethodDict {
     repeated ExecutingMethod values = 2; /// Values.
 }
 
+/**
+ *
+ */
+message SubscriptionTerminationRequest {
+	Guid id = 1; /// The request id.
+	Guid SubscriptionId = 2; /// The subscription id.
+	string reason = 3; /// The reason.
+	UnixTime executionTime = 4; /// The execution time.
+	UnixTime lastProcessingTime = 5; /// The last processing time.
+	/**
+	 * Status enum for subscription termination request.
+	 */
+	enum SubscriptionTerminationRequestStatusType {
+		Pending = 0; /// Pending.
+		Finished = 1; /// Finished.
+		Cancelled = 2; /// Cancelled.
+		InProgress = 3; /// In progress.
+	}
+	SubscriptionTerminationRequestStatusType status = 6; /// The status.
+	UnixTime createdTime = 7; /// The created time.
+	UnixTime lastChangeTime = 8; /// The last change time.
+}

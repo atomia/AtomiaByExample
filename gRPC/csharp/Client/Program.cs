@@ -1,14 +1,14 @@
-﻿using System.IO;
+﻿using Atomia.Grpc.Billing;
+using Gnu.Getopt;
+using Grpc.Core;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Grpc.Core;
-using Newtonsoft.Json.Linq;
-using Atomia.Billing.Core.Grpc;
-using static Atomia.Billing.Core.Grpc.AtomiaBillingGrpcApi;
-using Gnu.Getopt;
-using System.Collections.Generic;
 using System;
+using static Atomia.Grpc.Billing.AtomiaGrpcBilling;
 
 namespace Client
 {
@@ -70,7 +70,7 @@ namespace Client
 
             // Create a new channel and client
             var channel = new Channel($"{hostname}:{port}", ssl_creds);
-            var client = new AtomiaBillingGrpcApiClient(channel);
+            var client = new AtomiaGrpcBillingClient(channel);
 
             // Call the echo method on the API
             var echo_request = new EchoRequest { Message = message };

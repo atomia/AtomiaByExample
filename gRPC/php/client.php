@@ -1,6 +1,6 @@
 <?php
 require dirname(__FILE__).'/vendor/autoload.php';
-require dirname(__FILE__).'/AtomiaBillingGrpcApi.php';
+require dirname(__FILE__).'/AtomiaGrpcBilling.php';
 
 // Store the token inside this global
 $token = null;
@@ -65,10 +65,10 @@ function echo_req($hostname, $port, $cert, $message) {
 
     // Create a new client object
     $server = $hostname . ':' . $port;
-    $client = new AtomiaBilling\AtomiaBillingGrpcApiClient($server, $opts);
+    $client = new AtomiaGrpcBilling\AtomiaGrpcBillingClient($server, $opts);
 
     // Call the echo method on the API
-    $echo_request = new AtomiaBilling\EchoRequest();
+    $echo_request = new AtomiaGrpcBilling\EchoRequest();
     $echo_request->setMessage($message);
     list($reply, $status) = $client->Echo($echo_request)->wait();
 

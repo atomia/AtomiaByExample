@@ -5,7 +5,7 @@ import sys
 import grpc
 import getopt
 import requests
-import AtomiaBillingGrpcApi_pb2
+import AtomiaGrpcBilling_pb2
 
 # Store the token inside this global
 token = None
@@ -59,10 +59,10 @@ def echo_req(hostname, port, cert, message):
     # Create a new channel and client
     server = '{}:{}'.format(hostname, port)
     channel = grpc.secure_channel(server, chan_creds)
-    client = AtomiaBillingGrpcApi_pb2.AtomiaBillingGrpcApiStub(channel)
+    client = AtomiaGrpcBilling_pb2.AtomiaGrpcBillingStub(channel)
 
     # Call the echo method on the API
-    echo_request = AtomiaBillingGrpcApi_pb2.EchoRequest(message=message)
+    echo_request = AtomiaGrpcBilling_pb2.EchoRequest(message=message)
     echo_response = client.Echo(echo_request)
 
     return echo_response.message

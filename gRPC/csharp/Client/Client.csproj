@@ -65,8 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AtomiaBillingGrpcApi.cs" />
-    <Compile Include="AtomiaBillingGrpcApiGrpc.cs" />
+    <Compile Include="AtomiaGrpcBilling.cs" />
+    <Compile Include="AtomiaGrpcBillingGrpc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
