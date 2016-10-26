@@ -60,7 +60,7 @@ INSTALL
   - Generate PHP bindings from the proto file
 
   ```sh
-  $ protoc-gen-php -i ../proto -o . ../proto/AtomiaBillingGrpcApi.proto
+  $ protoc-gen-php -i ../proto -o . ../proto/AtomiaGrpcBilling.proto
   ```
 
 TRY IT!

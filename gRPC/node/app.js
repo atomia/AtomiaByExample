@@ -5,8 +5,8 @@ var grpc = require('grpc');
 var request = require('request');
 var Getopt = require('node-getopt');
 
-var proto_path = __dirname + '/../proto/AtomiaBillingGrpcApi.proto';
-var proto = grpc.load(proto_path).AtomiaBilling;
+var proto_path = __dirname + '/../proto/AtomiaGrpcBilling.proto';
+var proto = grpc.load(proto_path).AtomiaGrpcBilling;
 
 // Authentication function
 var auth = function(hostname, username, password, callback) {
@@ -65,7 +65,7 @@ var echo_req = function(hostname, port, cert, token, message, callback) {
 
     // Create a new client object
     var server = hostname + ':' + port;
-    var client = new proto.AtomiaBillingGrpcApi(server, chan_creds);
+    var client = new proto.AtomiaGrpcBilling(server, chan_creds);
 
     // Call the echo method on the API
     var echo_request = { message: message };

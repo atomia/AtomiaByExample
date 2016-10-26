@@ -32,7 +32,7 @@ INSTALL
     -I ../proto \
     --python_out=. \
     --grpc_python_out=. \
-    ../proto/AtomiaBillingGrpcApi.proto
+    ../proto/AtomiaGrpcBilling.proto
   ```
 
 TRY IT!
