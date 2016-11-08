@@ -6,6 +6,7 @@ import grpc
 import getopt
 import requests
 import AtomiaGrpcBilling_pb2
+import AtomiaGrpcBaseTypes_pb2
 
 # Store the token inside this global
 token = None
