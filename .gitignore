@@ -22,6 +22,7 @@ vendor/
 composer.lock
 composer.phar
 AtomiaGrpcBilling.php
+AtomiaGrpcBaseTypes.php
 node_modules/
 *.pyc
 packages/
@@ -30,8 +31,10 @@ gRPC/csharp/Client/Client/obj
 .vs
 AtomiaGrpcBilling.cs
 AtomiaGrpcBillingGrpc.cs
+AtomiaGrpcBaseTypes.cs
 root.pem
 *.swp
 AtomiaGrpcBilling_pb2.py
+AtomiaGrpcBaseTypes_pb2.py
 *.pyc
 node_modules

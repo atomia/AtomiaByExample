@@ -1,0 +1,123 @@
+syntax = "proto3";
+package AtomiaGrpcBaseTypes;
+option csharp_namespace = "Atomia.Grpc.BaseTypes";
+
+// Base data types
+
+/**
+ * A protobuf implementation of the C# Guid type.
+ */
+message Guid {
+	string value = 1; /// The value should be formatted like a Guid, e.g. 0f8fad5b-d9cb-469f-a165-70867728950e
+}
+
+/**
+ * A protobuf implementation of the C# decimal type.
+ */
+message Decimal {
+	float value = 1; /// The value of the decimal.
+}
+
+/**
+ * A protobuf implementation of the C# TimeSpan type.
+ */
+message TimeSpan {
+	double value = 1; /// The value of the TimeSpan.
+}
+
+/**
+ * A protobuf implementation of the C# string[] type.
+ */
+message StrArr {
+	repeated string values = 1; /// An array of strings, the C# equivalent would be string[] { "foo", "bar" };
+}
+
+/**
+ * A protobuf implementation of the C# KeyValuePair<Guid, string> type.
+ *
+ * This type should always be used together with the repeated keyword since the
+ * purpose of the type is to mimic the Dictionary<Guid, string> C# type.
+ */
+message GuidStrDict {
+	Guid key = 1;
+	string value = 2;
+}
+
+/**
+ * A protobuf implementation of the C# KeyValuePair<Guid, int> type.
+ *
+ * This type should always be used together with the repeated keyword since the
+ * purpose of the type is to mimic the Dictionary<Guid, int> C# type.
+ */
+message GuidInt32Dict {
+	Guid key = 1;
+	int32 value = 2;
+}
+
+/**
+ * A protobuf implementation of the C# KeyValuePair<Guid, bool> type.
+ *
+ * This type should always be used together with the repeated keyword since the
+ * purpose of the type is to mimic the Dictionary<Guid, bool> C# type.
+ */
+message GuidBoolDict {
+	Guid key = 1;
+	bool value = 2;
+}
+
+/**
+ * A protobuf implementation of the C# KeyValuePair<string, string[]> type.
+ *
+ * This type should always be used together with the repeated keyword since the
+ * purpose of the type is to mimic the Dictionary<string, string[]> C# type.
+ */
+message StrStrArrDict {
+	string key = 1;
+	repeated string values = 2;
+}
+
+/**
+ * A protobuf implementation of the C# Tuple<Guid, Guid> type.
+ *
+ * This type should always be used together with the repeated keyword since the
+ * purpose of the type is to mimic the Tuple<Guid, Guid> C# type.
+ */
+message GuidGuidTuple {
+	Guid item1 = 1;
+	Guid item2 = 2;
+}
+
+/**
+ * A unix time implementation. All DateTime objects in C# will be converted into this.
+ */
+message UnixTime {
+	uint64 time = 1;
+}
+
+/**
+ * A protobuf implementation of the C# bool? type.
+ */
+message NullableBool {
+	bool value = 1;
+}
+
+/**
+ * A protobuf implementation of the C# Guid? type.
+ */
+message NullableGuid {
+	Guid value = 1;
+}
+
+/**
+ * A protobuf implementation of the C# int? type.
+ */
+message NullableInt32 {
+	int32 value = 1;
+}
+
+/**
+ * A nullable unix time implementation.
+ */
+message NullableUnixTime {
+	UnixTime value = 1;
+}
