@@ -5,6 +5,7 @@ import sys
 import grpc
 import getopt
 import requests
+import AtomiaGrpcAccount_pb2
 import AtomiaGrpcBilling_pb2
 import AtomiaGrpcBaseTypes_pb2
 

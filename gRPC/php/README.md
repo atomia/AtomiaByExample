@@ -61,6 +61,7 @@ INSTALL
 
   ```sh
   $ protoc-gen-php -i ../proto -o . ../proto/AtomiaGrpcBaseTypes.proto
+  $ protoc-gen-php -i ../proto -o . ../proto/AtomiaGrpcAccount.proto
   $ protoc-gen-php -i ../proto -o . ../proto/AtomiaGrpcBilling.proto
   ```
 

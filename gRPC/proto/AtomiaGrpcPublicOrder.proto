@@ -1,0 +1,1107 @@
+﻿syntax = "proto3";
+package AtomiaGrpcPublicOrder;
+option csharp_namespace = "Atomia.Grpc.PublicOrder";
+import "AtomiaGrpcBaseTypes.proto";
+
+// Api methods
+
+service AtomiaGrpcPublicOrder {
+	/// Echoes the specified message.
+	rpc Echo (EchoRequest) returns (EchoReply) {}
+
+	/// Creates an order and a one time login token.
+	rpc CreateOrderWithLoginToken (CreateOrderWithLoginTokenRequest) returns (CreateOrderWithLoginTokenReply) {}
+
+	/// Creates the order.
+	rpc CreateOrder (CreateOrderRequest) returns (CreateOrderReply) {}
+
+	/// Creates an order for an existing customer.
+	rpc CreateOrderExistingCustomer (CreateOrderExistingCustomerRequest) returns (CreateOrderExistingCustomerReply) {}
+
+	/// Gets the items.
+	rpc GetItemsOfCurrency (GetItemsOfCurrencyRequest) returns (GetItemsOfCurrencyReply) {}
+
+	/// Gets the items.
+	rpc GetItems (GetItemsRequest) returns (GetItemsReply) {}
+
+	/// Calculates the totals of order.
+	rpc CalculateOrder (CalculateOrderRequest) returns (CalculateOrderReply) {}
+
+	/// Checks the email.
+	rpc ResellerCheckEmail (ResellerCheckEmailRequest) returns (ResellerCheckEmailReply) {}
+
+	/// Checks the email.
+	rpc CheckEmail (CheckEmailRequest) returns (CheckEmailReply) {}
+
+	/// Gets the customer info.
+	rpc GetCustomerInfo (GetCustomerInfoRequest) returns (GetCustomerInfoReply) {}
+
+	/// Gets the customer packages by customer email.
+	rpc GetCustomerPackagesByEmail (GetCustomerPackagesByEmailRequest) returns (GetCustomerPackagesByEmailReply) {}
+
+	/// Makes the payment.
+	rpc MakePayment (MakePaymentRequest) returns (MakePaymentReply) {}
+
+	/// Updates the payment transaction.
+	rpc UpdatePaymentTransactionData (UpdatePaymentTransactionDataRequest) returns (UpdatePaymentTransactionDataReply) {}
+
+	/// Finishes the payment.
+	rpc FinishPayment (FinishPaymentRequest) returns (FinishPaymentReply) {}
+
+	/// Gets the payment transaction by id.
+	rpc GetPaymentTransactionById (GetPaymentTransactionByIdRequest) returns (GetPaymentTransactionByIdReply) {}
+
+	/// Gets the payment transaction by initial identifier.
+	rpc GetPaymentTransactionByInitialId (GetPaymentTransactionByInitialIdRequest) returns (GetPaymentTransactionByInitialIdReply) {}
+
+	/// Gets address info.
+	rpc GetAddressInfo (GetAddressInfoRequest) returns (GetAddressInfoReply) {}
+
+	/// Gets address info from an order.
+	rpc GetAddressInfoOrder (GetAddressInfoOrderRequest) returns (GetAddressInfoOrderReply) {}
+
+	/// Gets the countries.
+	rpc GetCountries (GetCountriesRequest) returns (GetCountriesReply) {}
+
+	/// Checks the domains.
+	rpc CheckDomains (CheckDomainsRequest) returns (CheckDomainsReply) {}
+
+	/// Checks the domains for transfer.
+	rpc CheckDomainsForTransfer (CheckDomainsForTransferRequest) returns (CheckDomainsForTransferReply) {}
+
+	/// Checks if customer can create new account.
+	rpc CanCreateAccount (CanCreateAccountRequest) returns (CanCreateAccountReply) {}
+
+	/// Checks whether tax should be shown for reseller with resellerId.
+	rpc ShowTaxForReseller (ShowTaxForResellerRequest) returns (ShowTaxForResellerReply) {}
+
+	/// Gets the account data by hash.
+	rpc GetAccountDataByHash (GetAccountDataByHashRequest) returns (GetAccountDataByHashReply) {}
+
+	/// Gets the reseller data by URL.
+	rpc GetResellerDataByUrl (GetResellerDataByUrlRequest) returns (GetResellerDataByUrlReply) {}
+
+	/// Gets the default reseller's data.
+	rpc GetDefaultResellerData (GetDefaultResellerDataRequest) returns (GetDefaultResellerDataReply) {}
+
+	/// Validates the VAT number.
+	rpc ValidateVatNumber (ValidateVatNumberRequest) returns (ValidateVatNumberReply) {}
+
+	/// Validates a given user.
+	rpc ValidateUser (ValidateUserRequest) returns (ValidateUserReply) {}
+
+	/// Lists the resource locations.
+	rpc ListResourceLocations (ListResourceLocationsRequest) returns (ListResourceLocationsReply) {}
+
+	/// Gets shop products.
+	rpc GetShopProducts (GetShopProductsRequest) returns (GetShopProductsReply) {}
+
+	/// Gets currencies.
+	rpc GetCurrencies (GetCurrenciesRequest) returns (GetCurrenciesReply) {}
+
+	/// Gets the price list owner identifier.
+	rpc GetPriceListOwnerId (GetPriceListOwnerIdRequest) returns (GetPriceListOwnerIdReply) {}
+
+	/// Gets the price list owner identifier.
+	rpc GetPriceListOwners (GetPriceListOwnersRequest) returns (GetPriceListOwnersReply) {}
+
+	/// Lists all languages.
+	rpc GetLanguages (GetLanguagesRequest) returns (GetLanguagesReply) {}
+
+	/// Checks if any campaign with code in the system is active.
+	rpc IsAnyCampaignWithCodeActive (IsAnyCampaignWithCodeActiveRequest) returns (IsAnyCampaignWithCodeActiveReply) {}
+
+	/// Gets the items cache flush time.
+	rpc GetItemsCacheFlushTime (GetItemsCacheFlushTimeRequest) returns (GetItemsCacheFlushTimeReply) {}
+
+	/// Gets the tax rule results for items.
+	rpc GetTaxRuleResultBulk (GetTaxRuleResultBulkRequest) returns (GetTaxRuleResultBulkReply) {}
+}
+
+// Request and replies
+
+/**
+ * The Echo method request.
+ */
+message EchoRequest {
+	string message = 1; /// The message.
+}
+
+/**
+ * The Echo method reply.
+ */
+message EchoReply {
+	string message = 1; /// The echoed message.
+}
+
+
+/**
+ * The CreateOrderWithLoginTokenRequest method request.
+ */
+message CreateOrderWithLoginTokenRequest {
+	PublicOrder publicOrder = 1; /// Public order.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The CreateOrderWithLoginTokenReply method reply.
+ */
+message CreateOrderWithLoginTokenReply {
+	PublicOrder publicOrder = 1; /// Public order.
+	string token = 2; /// Token.
+}
+
+/**
+ * The CreateOrderRequest method request.
+ */
+message CreateOrderRequest {
+	PublicOrder publicOrder = 1; /// Public order.
+}
+
+/**
+ * The CreateOrderReply method reply.
+ */
+message CreateOrderReply {
+	PublicOrder publicOrder = 1; /// Public order.
+}
+
+/**
+ * The CreateOrderExistingCustomerRequest method request.
+ */
+message CreateOrderExistingCustomerRequest {
+	PublicOrder publicOrder = 1; /// Public order.
+	string username = 2; /// Username.
+	string password = 3; /// Password.
+	string customerNumber = 4; /// Customer number.
+}
+
+/**
+ * The CreateOrderExistingCustomerReply method reply.
+ */
+message CreateOrderExistingCustomerReply {
+	PublicOrder publicOrder = 1; /// Public order.
+}
+
+/**
+ * The GetItemsOfCurrencyRequest method request.
+ */
+message GetItemsOfCurrencyRequest {
+	string resellerId = 1; /// Reseller id.
+	string languageIsoCode = 2; /// Language iso code.
+	string currencyCode = 3; /// Currency code.
+}
+
+/**
+ * The GetItemsOfCurrencyReply method reply.
+ */
+message GetItemsOfCurrencyReply {
+	repeated PublicItem items = 1; /// Items.
+}
+
+/**
+ * The GetItemsRequest method request.
+ */
+message GetItemsRequest {
+	string resellerId = 1; /// Reseller id.
+	string languageIsoCode = 2; /// Language iso code.
+}
+
+/**
+ * The GetItemsReply method reply.
+ */
+message GetItemsReply {
+	repeated PublicItem items = 1; /// Items.
+}
+
+/**
+ * The CalculateOrderRequest method request.
+ */
+message CalculateOrderRequest {
+	PublicOrder publicOrder = 1; /// Public order.
+}
+
+/**
+ * The CalculateOrderReply method reply.
+ */
+message CalculateOrderReply {
+	PublicOrder publicOrder = 1; /// Public order.
+}
+
+/**
+ * The ResellerCheckEmailRequest method request.
+ */
+message ResellerCheckEmailRequest {
+	string id = 1; /// Id.
+	string email = 2; /// Email.
+	string resellerRootDomain = 3; /// Reseller root domain.
+}
+
+/**
+ * The ResellerCheckEmailReply method reply.
+ */
+message ResellerCheckEmailReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The CheckEmailRequest method request.
+ */
+message CheckEmailRequest {
+	string id = 1; /// Id.
+	string email = 2; /// Email.
+}
+
+/**
+ * The CheckEmailReply method reply.
+ */
+message CheckEmailReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The GetCustomerInfoRequest method request.
+ */
+message GetCustomerInfoRequest {
+	string email = 1; /// Email.
+	repeated string cartItems = 2; /// Cart items.
+}
+
+/**
+ * The GetCustomerInfoReply method reply.
+ */
+message GetCustomerInfoReply {
+	CustomerInfo customerInfo = 1; /// Customer info.
+}
+
+/**
+ * The GetCustomerPackagesByEmailRequest method request.
+ */
+message GetCustomerPackagesByEmailRequest {
+	string email = 1; /// Email.
+}
+
+/**
+ * The GetCustomerPackagesByEmailReply method reply.
+ */
+message GetCustomerPackagesByEmailReply {
+	repeated string packages = 1; /// Packages.
+}
+
+/**
+ * The MakePaymentRequest method request.
+ */
+message MakePaymentRequest {
+	PublicPaymentTransaction transaction = 1; /// Transaction.
+}
+
+/**
+ * The MakePaymentReply method reply.
+ */
+message MakePaymentReply {
+	PublicPaymentTransaction transaction = 1; /// Transaction.
+}
+
+/**
+ * The UpdatePaymentTransactionDataRequest method request.
+ */
+message UpdatePaymentTransactionDataRequest {
+	string transactionId = 1; /// Transaction id.
+	string newStatus = 2; /// New status.
+	string newStatusCode = 3; /// New status code.
+	string newStatusCodeDescription = 4; /// New status code description.
+	repeated NameValue attributes = 5; /// Attributes.
+}
+
+/**
+ * The UpdatePaymentTransactionDataReply method reply.
+ */
+message UpdatePaymentTransactionDataReply {
+}
+
+/**
+ * The FinishPaymentRequest method request.
+ */
+message FinishPaymentRequest {
+	string transactionId = 1; /// Transaction id.
+}
+
+/**
+ * The FinishPaymentReply method reply.
+ */
+message FinishPaymentReply {
+	PublicPaymentTransaction transaction = 1; /// Transaction.
+}
+
+/**
+ * The GetPaymentTransactionByIdRequest method request.
+ */
+message GetPaymentTransactionByIdRequest {
+	string transactionId = 1; /// Transaction id.
+}
+
+/**
+ * The GetPaymentTransactionByIdReply method reply.
+ */
+message GetPaymentTransactionByIdReply {
+	PublicPaymentTransaction transaction = 1; /// Transaction.
+}
+
+/**
+ * The GetPaymentTransactionByInitialIdRequest method request.
+ */
+message GetPaymentTransactionByInitialIdRequest {
+	string initialTransactionId = 1; /// Initial transaction id.
+}
+
+/**
+ * The GetPaymentTransactionByInitialIdReply method reply.
+ */
+message GetPaymentTransactionByInitialIdReply {
+	PublicPaymentTransaction transaction = 1; /// Transaction.
+}
+
+/**
+ * The GetAddressInfoRequest method request.
+ */
+message GetAddressInfoRequest {
+	string identifier = 1; /// Identifier.
+
+	/**
+	 * Entity type enumeration.
+	 */
+	enum EntityType {
+		Company = 0; /// Company.
+		Person = 1; /// Person.
+	}
+	EntityType type = 2; /// Type.
+}
+
+/**
+ * The GetAddressInfoReply method reply.
+ */
+message GetAddressInfoReply {
+	AddressInfo addressInfo = 1; /// Address info.
+}
+
+/**
+ * The GetAddressInfoOrderRequest method request.
+ */
+message GetAddressInfoOrderRequest {
+	string identifier = 1; /// Identifier.
+
+	enum EntityType {
+		Company = 0; /// Company.
+		Person = 1; /// Person.
+	}
+	EntityType type = 2; /// Type.
+	AtomiaGrpcBaseTypes.Guid resellerId = 3; /// Reseller id.
+}
+
+/**
+ * The GetAddressInfoOrderReply method reply.
+ */
+message GetAddressInfoOrderReply {
+	AddressInfo addressInfo = 1; /// Address info.
+}
+
+/**
+ * The GetCountriesRequest method request.
+ */
+message GetCountriesRequest {
+}
+
+/**
+ * The GetCountriesReply method reply.
+ */
+message GetCountriesReply {
+	repeated Country countries = 1; /// Countries.
+}
+
+/**
+ * The CheckDomainsRequest method request.
+ */
+message CheckDomainsRequest {
+	repeated string domains = 1; /// Domains.
+}
+
+/**
+ * The CheckDomainsReply method reply.
+ */
+message CheckDomainsReply {
+	repeated AttributeData attributes = 1; /// Attributes.
+}
+
+/**
+ * The CheckDomainsForTransferRequest method request.
+ */
+message CheckDomainsForTransferRequest {
+	repeated string domains = 1; /// Domains.
+}
+
+/**
+ * The CheckDomainsForTransferReply method reply.
+ */
+message CheckDomainsForTransferReply {
+	repeated AttributeData attributes = 1; /// Attributes.
+}
+
+/**
+ * The CanCreateAccountRequest method request.
+ */
+message CanCreateAccountRequest {
+	string companyNumber = 1; /// Company number.
+}
+
+/**
+ * The CanCreateAccountReply method reply.
+ */
+message CanCreateAccountReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The ShowTaxForResellerRequest method request.
+ */
+message ShowTaxForResellerRequest {
+	AtomiaGrpcBaseTypes.Guid resellerId = 1; /// Reseller id.
+}
+
+/**
+ * The ShowTaxForResellerReply method reply.
+ */
+message ShowTaxForResellerReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The GetAccountDataByHashRequest method request.
+ */
+message GetAccountDataByHashRequest {
+	string accountHash = 1; /// Account hash.
+}
+
+/**
+ * The GetAccountDataByHashReply method reply.
+ */
+message GetAccountDataByHashReply {
+	AccountData accountData = 1; /// Account data.
+}
+
+/**
+ * The GetResellerDataByUrlRequest method request.
+ */
+message GetResellerDataByUrlRequest {
+	string orderPageUrl = 1; /// Order page url.
+}
+
+/**
+ * The GetResellerDataByUrlReply method reply.
+ */
+message GetResellerDataByUrlReply {
+	AccountData accountData = 1; /// Account data.
+}
+
+/**
+ * The GetDefaultResellerDataRequest method request.
+ */
+message GetDefaultResellerDataRequest {
+}
+
+/**
+ * The GetDefaultResellerDataReply method reply.
+ */
+message GetDefaultResellerDataReply {
+	AccountData accountData = 1; /// Account data.
+}
+
+/**
+ * The ValidateVatNumberRequest method request.
+ */
+message ValidateVatNumberRequest {
+	string countryCode = 1; /// Country code.
+	string vatNumber = 2; /// Vat number.
+}
+
+/**
+ * The ValidateVatNumberReply method reply.
+ */
+message ValidateVatNumberReply {
+	enum VatNumberValidationResultType {
+		Invalid = 0; /// Invalid.
+		Valid = 1; /// Valid.
+		ValidationError = 2; /// Validation error.
+	}
+	VatNumberValidationResultType vatNumberValidationResultType = 1; /// Vat number validation result type.
+}
+
+/**
+ * The ValidateUserRequest method request.
+ */
+message ValidateUserRequest {
+	string username = 1; /// Username.
+	string password = 2; /// Password.
+}
+
+/**
+ * The ValidateUserReply method reply.
+ */
+message ValidateUserReply {
+	AccountInfo accountInfo = 1; /// Account info.
+}
+
+/**
+ * The ListResourceLocationsRequest method request.
+ */
+message ListResourceLocationsRequest {
+	AtomiaGrpcBaseTypes.Guid resellerId = 1; /// Reseller id.
+}
+
+/**
+ * The ListResourceLocationsReply method reply.
+ */
+message ListResourceLocationsReply {
+	repeated ResourceLocation resourceLocations = 1; /// Resource locations.
+}
+
+/**
+ * The GetShopProductsRequest method request.
+ */
+message GetShopProductsRequest {
+	string resellerId = 1; /// Reseller id.
+	string shopName = 2; /// Shop name.
+	string countryCode = 3; /// Country code.
+	string currencyCode = 4; /// Currency code.
+}
+
+/**
+ * The GetShopProductsReply method reply.
+ */
+message GetShopProductsReply {
+	repeated PublicItem items = 1; /// Items.
+}
+
+/**
+ * The GetCurrenciesRequest method request.
+ */
+message GetCurrenciesRequest {
+}
+
+/**
+ * The GetCurrenciesReply method reply.
+ */
+message GetCurrenciesReply {
+	repeated Currency currencies = 1; /// Currencies.
+}
+
+/**
+ * The GetPriceListOwnerIdRequest method request.
+ */
+message GetPriceListOwnerIdRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+}
+
+/**
+ * The GetPriceListOwnerIdReply method reply.
+ */
+message GetPriceListOwnerIdReply {
+	AtomiaGrpcBaseTypes.Guid priceListOwnerId = 1; /// Price list owner id.
+}
+
+/**
+ * The GetPriceListOwnersRequest method request.
+ */
+message GetPriceListOwnersRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+}
+
+/**
+ * The GetPriceListOwnersReply method reply.
+ */
+message GetPriceListOwnersReply {
+	PriceListOwners priceListOwners = 1; /// Price list owners.
+}
+
+/**
+ * The GetLanguagesRequest method request.
+ */
+message GetLanguagesRequest {
+}
+
+/**
+ * The GetLanguagesReply method reply.
+ */
+message GetLanguagesReply {
+	repeated PublicOrderLanguage languages = 1; /// Languages.
+}
+
+/**
+ * The IsAnyCampaignWithCodeActiveRequest method request.
+ */
+message IsAnyCampaignWithCodeActiveRequest {
+}
+
+/**
+ * The IsAnyCampaignWithCodeActiveReply method reply.
+ */
+message IsAnyCampaignWithCodeActiveReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The GetItemsCacheFlushTimeRequest method request.
+ */
+message GetItemsCacheFlushTimeRequest {
+}
+
+/**
+ * The GetItemsCacheFlushTimeReply method reply.
+ */
+message GetItemsCacheFlushTimeReply {
+	AtomiaGrpcBaseTypes.UnixTime timestamp = 1; /// Timestamp.
+}
+
+/**
+ * The GetTaxRuleResultBulkRequest method request.
+ */
+message GetTaxRuleResultBulkRequest {
+	repeated AtomiaGrpcBaseTypes.Guid itemIds = 1; /// Item ids.
+	AtomiaGrpcBaseTypes.Guid resellerId = 2; /// Reseller id.
+	AtomiaGrpcBaseTypes.Guid customerId = 3; /// Customer id.
+	string countryCode = 4; /// Country code.
+	string countryState = 5; /// Country state.
+	string legalNumber = 6; /// Legal number.
+}
+
+/**
+ * The GetTaxRuleResultBulkReply method reply.
+ */
+message GetTaxRuleResultBulkReply {
+	repeated PublicItemTaxRuleResult publicItemTaxRuleResults = 1; /// Public item tax rule results.
+}
+
+// Data types
+
+/**
+ * The PublicOrder data type.
+ */
+message PublicOrder {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string number = 2; /// Number.
+	AtomiaGrpcBaseTypes.Guid customerId = 3; /// Customer id.
+	string firstName = 4; /// First name.
+	string lastName = 5; /// Last name.
+	string company = 6; /// Company.
+	string address = 7; /// Address.
+	string address2 = 8; /// Address2.
+	string zip = 9; /// Zip.
+	string city = 10; /// City.
+	string countryState = 11; /// Country state.
+	string country = 12; /// Country.
+	string companyNumber = 13; /// Company number.
+	string legalNumber = 14; /// Legal number.
+	string phone = 15; /// Phone.
+	string mobile = 16; /// Mobile.
+	string fax = 17; /// Fax.
+	string email = 18; /// Email.
+	string billingEmail = 19; /// Billing email.
+	string billingFirstName = 20; /// Billing first name.
+	string billingLastName = 21; /// Billing last name.
+	string billingCompany = 22; /// Billing company.
+	string billingCompanyNumber = 23; /// Billing company number.
+	string billingAddress = 24; /// Billing address.
+	string billingAddress2 = 25; /// Billing address2.
+	string billingZip = 26; /// Billing zip.
+	string billingCity = 27; /// Billing city.
+	string billingCountryState = 28; /// Billing country state.
+	string billingCountry = 29; /// Billing country.
+	string billingPhone = 30; /// Billing phone.
+	string billingMobile = 31; /// Billing mobile.
+	string billingFax = 32; /// Billing fax.
+	AtomiaGrpcBaseTypes.Decimal total = 33; /// Total.
+	AtomiaGrpcBaseTypes.Decimal resellerCommissionTotal = 34; /// Reseller commission total.
+	AtomiaGrpcBaseTypes.Decimal subtotal = 35; /// Subtotal.
+	repeated TaxTotal taxes = 36; /// Taxes.
+	string currency = 37; /// Currency.
+	AtomiaGrpcBaseTypes.Guid resellerId = 38; /// Reseller id.
+	string orderType = 39; /// Order type.
+	repeated PublicOrderItem orderItems = 40; /// Order items.
+	repeated PublicOrderCustomData customData = 41; /// Custom data.
+
+	enum PaymentMethodEnum {
+		PayByInvoice = 0; /// Pay by invoice.
+		PayByCard = 1; /// Pay by card.
+	}
+	PaymentMethodEnum paymentMethod = 42; /// Payment method.
+}
+
+/**
+ * The TaxTotal data type.
+ */
+message TaxTotal {
+	AtomiaGrpcBaseTypes.Decimal percent = 1; /// Percent.
+	string name = 2; /// Name.
+	AtomiaGrpcBaseTypes.Decimal total = 3; /// Total.
+}
+
+/**
+ * The PublicOrderItem data type.
+ */
+message PublicOrderItem {
+	string description = 1; /// Description.
+	AtomiaGrpcBaseTypes.Guid itemId = 2; /// Item id.
+	int32 itemNo = 3; /// Item no.
+	string itemName = 4; /// Item name.
+	string itemNumber = 5; /// Item number.
+	string itemExternalId = 6; /// Item external id.
+	AtomiaGrpcBaseTypes.Guid renewalPeriodId = 7; /// Renewal period id.
+	int32 renewalPeriod = 8; /// Renewal period.
+	string renewalPeriodUnit = 9; /// Renewal period unit.
+	AtomiaGrpcBaseTypes.Decimal price = 10; /// Price.
+	AtomiaGrpcBaseTypes.Decimal resellerPrice = 11; /// Reseller price.
+	AtomiaGrpcBaseTypes.Decimal resellerCommission = 12; /// Reseller commission.
+	AtomiaGrpcBaseTypes.Decimal discount = 13; /// Discount.
+	AtomiaGrpcBaseTypes.Decimal quantity = 14; /// Quantity.
+	AtomiaGrpcBaseTypes.Decimal subtotal = 15; /// Subtotal.
+	AtomiaGrpcBaseTypes.Decimal taxAmount = 16; /// Tax amount.
+	repeated PublicOrderTax taxes = 17; /// Taxes.
+	repeated PublicOrderItemProperty customData = 18; /// Custom data.
+}
+
+/**
+ * The PublicOrderTax data type.
+ */
+message PublicOrderTax {
+	string name = 1; /// Name.
+	AtomiaGrpcBaseTypes.Decimal percent = 2; /// Percent.
+	bool applyToAmountOnly = 3; /// Apply to amount only.
+	string taxRuleName = 4; /// Tax rule name.
+	AtomiaGrpcBaseTypes.Guid taxRuleId = 5; /// Tax rule id.
+
+	enum TaxPartType {
+		Tax1 = 0; /// Tax1.
+		Tax2 = 1; /// Tax2.
+	}
+	TaxPartType taxPart = 6; /// Tax part.
+}
+
+/**
+ * The PublicOrderItemProperty data type.
+ */
+message PublicOrderItemProperty {
+	string name = 1; /// Name.
+	string value = 2; /// Value.
+	string suffix = 3; /// Suffix.
+}
+
+/**
+ * The PublicOrderCustomData data type.
+ */
+message PublicOrderCustomData {
+	string name = 1; /// Name.
+	string value = 2; /// Value.
+}
+
+/**
+ * The PublicItem data type.
+ */
+message PublicItem {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string description = 2; /// Description.
+	string category = 3; /// Category.
+	repeated PublicShopCategory publicShopCategory = 4; /// Public shop category.
+	AtomiaGrpcBaseTypes.Decimal price = 5; /// Price.
+	repeated string tags = 6; /// Tags.
+	string articleNumber = 7; /// Article number.
+	string name = 8; /// Name.
+	bool recurring = 9; /// Recurring.
+	int32 renewalPeriod = 10; /// Renewal period.
+	string renewalPeriodUnit = 11; /// Renewal period unit.
+	AtomiaGrpcBaseTypes.Guid renewalItemId = 12; /// Renewal item id.
+	bool reProvision = 13; /// Re provision.
+	bool defferedRevenue = 14; /// Deffered revenue.
+	enum DeliveryDate {
+		Invoiced = 0; /// Invoiced.
+		InvoicedRenewal = 1; /// Invoiced renewal.
+	}
+	DeliveryDate deliveryDate = 15; /// Delivery date.
+	bool allowToSubresellers = 16; /// Allow to subresellers.
+	enum ProvisioningAllowedType {
+		AllowedWithoutPayment = 0; /// Allowed without payment.
+		AllowedAfterPayment = 1; /// Allowed after payment.
+		AllowedIfResellerCreditLevelPermitsIt = 2; /// Allowed if reseller credit level permits it.
+		AllowedIfCustomerCreditLevelPermitsIt = 3; /// Allowed if customer credit level permits it.
+	}
+	ProvisioningAllowedType provisioningAllowedType = 17; /// Provisioning allowed type.
+	repeated PublicOrderTax taxes = 18; /// Taxes.
+	repeated PublicOrderItemProperty properties = 19; /// Properties.
+	repeated PublicOrderRenewalPeriod renewalPeriods = 20; /// Renewal periods.
+	repeated PublicItemPrice prices = 21; /// Prices.
+	repeated PublicInternational multilanguageNames = 22; /// Multilanguage names.
+	repeated PublicInternational multilanguageDescriptions = 23; /// Multilanguage descriptions.
+	repeated PublicOrderCounterType counterTypes = 24; /// Counter types.
+}
+
+/**
+ * The PublicOrderRenewalPeriod data type.
+ */
+message PublicOrderRenewalPeriod {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	int32 renewalPeriodValue = 2; /// Renewal period value.
+	string renewalPeriodUnit = 3; /// Renewal period unit.
+	AtomiaGrpcBaseTypes.Decimal price = 4; /// Price.
+	repeated PublicItemPrice prices = 5; /// Prices.
+}
+
+/**
+ * The PublicItemPrice data type.
+ */
+message PublicItemPrice {
+	AtomiaGrpcBaseTypes.Guid currencyId = 1; /// Currency id.
+	AtomiaGrpcBaseTypes.Guid resellerId = 2; /// Reseller id.
+	AtomiaGrpcBaseTypes.Decimal value = 3; /// Value.
+}
+
+/**
+ * The PublicInternational data type.
+ */
+message PublicInternational {
+	AtomiaGrpcBaseTypes.Guid languageId = 1; /// Language id.
+	string value = 2; /// Value.
+}
+
+/**
+ * The PublicOrderCounterType data type.
+ */
+message PublicOrderCounterType {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string counterId = 2; /// Counter id.
+	string name = 3; /// Name.
+	string description = 4; /// Description.
+	repeated PublicInternational multilanguageNames = 5; /// Multilanguage names.
+	repeated PublicInternational multilanguageDescriptions = 6; /// Multilanguage descriptions.
+	AtomiaGrpcBaseTypes.Decimal unitValue = 7; /// Unit value.
+	string unitName = 8; /// Unit name.
+	bool requireSubscription = 9; /// Require subscription.
+	repeated PublicOrderCounterRange ranges = 10; /// Ranges.
+}
+
+/**
+ * The PublicOrderCounterRange data type.
+ */
+message PublicOrderCounterRange {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	repeated PublicInternational multilanguageNames = 3; /// Multilanguage names.
+	AtomiaGrpcBaseTypes.Decimal lowerMargin = 4; /// Lower margin.
+	AtomiaGrpcBaseTypes.Decimal upperMargin = 5; /// Upper margin.
+	AtomiaGrpcBaseTypes.Decimal price = 6; /// Price.
+	repeated PublicItemPrice prices = 7; /// Prices.
+}
+
+/**
+ * The CustomerInfo data type.
+ */
+message CustomerInfo {
+	string email = 1; /// Email.
+	bool isExisting = 2; /// Is existing.
+	bool isUpgrade = 3; /// Is upgrade.
+}
+
+/**
+ * The PublicPaymentTransaction data type.
+ */
+message PublicPaymentTransaction {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string status = 2; /// Status.
+	string statusCode = 3; /// Status code.
+	string statusCodeDescription = 4; /// Status code description.
+	string pluginName = 5; /// Plugin name.
+	string guiPluginName = 6; /// Gui plugin name.
+	string paymentMethod = 7; /// Payment method.
+	string transactionId = 8; /// Transaction id.
+	string transactionReference = 9; /// Transaction reference.
+	AtomiaGrpcBaseTypes.Decimal amount = 10; /// Amount.
+	string currencyCode = 11; /// Currency code.
+	string returnUrl = 12; /// Return url.
+	AtomiaGrpcBaseTypes.UnixTime creationTime = 13; /// Creation time.
+	AtomiaGrpcBaseTypes.UnixTime lastChangeTime = 14; /// Last change time.
+	repeated AttributeData attributes = 15; /// Attributes.
+	string redirectUrl = 16; /// Redirect url.
+}
+
+/**
+ * The AttributeData data type.
+ */
+message AttributeData {
+	string name = 1; /// Name.
+	string value = 2; /// Value.
+}
+
+/**
+ * The NameValue data type.
+ */
+message NameValue {
+	string name = 1; /// Name.
+	string value = 2; /// Value.
+}
+
+/**
+ * The AddressInfo data type.
+ */
+message AddressInfo {
+	string firstName = 1; /// First name.
+	string lastName = 2; /// Last name.
+	repeated string address = 3; /// Address.
+	string city = 4; /// City.
+	string zip = 5; /// Zip.
+	string company = 6; /// Company.
+}
+
+/**
+ * The Country data type.
+ */
+message Country {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	string code = 3; /// Code.
+	string tag = 4; /// Tag.
+	repeated State states = 5; /// States.
+}
+
+/**
+ * The State data type.
+ */
+message State {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	Country country = 2; /// Country.
+	string name = 3; /// Name.
+	string code = 4; /// Code.
+}
+
+/**
+ * The AccountData data type.
+ */
+message AccountData {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string hash = 2; /// Hash.
+	string name = 3; /// Name.
+	string techEmailAddress = 4; /// Tech email address.
+	string billingEmailAddress = 5; /// Billing email address.
+	AtomiaGrpcBaseTypes.Guid defaulLanguageId = 6; /// Defaul language id.
+	string defaultCurrencyCode = 7; /// Default currency code.
+	repeated string currencies = 8; /// Currencies.
+	Country defaultCountry = 9; /// Default country.
+	PaymentMethod defaultPaymentMethod = 10; /// Default payment method.
+	repeated PaymentMethod paymentMethods = 11; /// Payment methods.
+	string defaultLanguage = 12; /// Default language.
+	string languages = 13; /// Languages.
+	repeated CustomAttribute additionalData = 14; /// Additional data.
+	int32 currencyDecimalPlaces = 15; /// Currency decimal places.
+	bool inclusiveTaxCalculationType = 16; /// Inclusive tax calculation type.
+}
+
+/**
+ * The PaymentMethod data type.
+ */
+message PaymentMethod {
+	string paymentProvider = 1; /// Payment provider.
+	string pluginName = 2; /// Plugin name.
+	string refundPluginName = 3; /// Refund plugin name.
+	string guiPluginName = 4; /// Gui plugin name.
+}
+
+/**
+ * The CustomAttribute data type.
+ */
+message CustomAttribute {
+	string name = 1; /// Name.
+	string value = 2; /// Value.
+}
+
+/**
+ * The AccountInfo data type.
+ */
+message AccountInfo {
+	string customerNumber = 1; /// Customer number.
+	string status = 2; /// Status.
+	AccountAddress address = 3; /// Address.
+	AtomiaGrpcBaseTypes.Guid id = 4; /// Id.
+}
+
+/**
+ * The AccountAddress data type.
+ */
+message AccountAddress {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string companyName = 2; /// Company name.
+	string companyNumber = 3; /// Company number.
+	string firstName = 4; /// First name.
+	string lastName = 5; /// Last name.
+	string address = 6; /// Address.
+	string address2 = 7; /// Address2.
+	string city = 8; /// City.
+	string zip = 9; /// Zip.
+	Country country = 10; /// Country.
+	string state = 11; /// State.
+	string email = 12; /// Email.
+	string phone = 13; /// Phone.
+	string fax = 14; /// Fax.
+	string mobile = 15; /// Mobile.
+}
+
+/**
+ * The ResourceLocation data type.
+ */
+message ResourceLocation {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	string friendlyName = 3; /// Friendly name.
+	string description = 4; /// Description.
+}
+
+/**
+ * The Currency data type.
+ */
+message Currency {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string code = 2; /// Code.
+	string symbol = 3; /// Symbol.
+	string name = 4; /// Name.
+	bool placeSymbolBefore = 5; /// Place symbol before.
+	bool isActive = 6; /// Is active.
+}
+
+/**
+ * The PriceListOwners data type.
+ */
+message PriceListOwners {
+	AtomiaGrpcBaseTypes.Guid priceListOwnerId = 1; /// Price list owner id.
+	AtomiaGrpcBaseTypes.Guid parentPriceListOwnerId = 2; /// Parent price list owner id.
+}
+
+/**
+ * The PublicOrderLanguage data type.
+ */
+message PublicOrderLanguage {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	string iso639Name = 3; /// Iso639 name.
+	string culture = 4; /// Culture.
+}
+
+/**
+ * The PublicItemTaxRuleResult data type.
+ */
+message PublicItemTaxRuleResult {
+	AtomiaGrpcBaseTypes.Guid itemId = 1; /// Item id.
+	PublicOrderTax taxRuleResult1 = 2; /// Tax rule result1.
+	PublicOrderTax taxRuleResult2 = 3; /// Tax rule result2.
+}
+
+/**
+ * The PublicShopCategory data type.
+ */
+message PublicShopCategory {
+	string name = 1; /// Name.
+	repeated PublicInternational multilanguageDescriptions = 2; /// Multilanguage descriptions.
+}

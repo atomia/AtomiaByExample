@@ -2,6 +2,7 @@
 package AtomiaGrpcBilling;
 option csharp_namespace = "Atomia.Grpc.Billing";
 import "AtomiaGrpcBaseTypes.proto";
+import "AtomiaGrpcAccount.proto";
 
 // Api methods
 service AtomiaGrpcBilling {
@@ -1452,9 +1453,9 @@ message UpdateAccountDetailsReply {
  */
 message UpdateAccountAddressesRequest {
 	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account's id.
-	AccountAddress mainAddress = 2; /// Account's main address
-	AccountAddress billingAddress = 3; /// Account's billing address.
-	AccountAddress shippingAddress = 4; /// Account's shipping address.
+	AtomiaGrpcAccount.AccountAddress mainAddress = 2; /// Account's main address
+	AtomiaGrpcAccount.AccountAddress billingAddress = 3; /// Account's billing address.
+	AtomiaGrpcAccount.AccountAddress shippingAddress = 4; /// Account's shipping address.
 }
 
 /**
@@ -1522,13 +1523,13 @@ message GetAvailableInvoiceViasReply {
  * The ResellerCreateCustomer method request.
  */
 message ResellerCreateCustomerRequest {
-	Account account = 1; /// The account.
-	Login login = 2; /// The login.
+	AtomiaGrpcAccount.Account account = 1; /// The account.
+	AtomiaGrpcAccount.Login login = 2; /// The login.
 	string password = 3; /// The password.
 	repeated string roles = 4; /// The roles.
-	AccountAddress mainAccountAddress = 5; /// The main address.
-	AccountAddress billingAccountAddress = 6; /// The billing address.
-	AccountAddress shipppingAccountAddress = 7; /// The shipping address.
+	AtomiaGrpcAccount.AccountAddress mainAccountAddress = 5; /// The main address.
+	AtomiaGrpcAccount.AccountAddress billingAccountAddress = 6; /// The billing address.
+	AtomiaGrpcAccount.AccountAddress shipppingAccountAddress = 7; /// The shipping address.
 	AccountDetails accountDetails = 8; /// The account details.
 	string orderNumber = 9; /// The order number.
 	string resellerRootDomain = 10; /// The reseller root domain.
@@ -1545,13 +1546,13 @@ message ResellerCreateCustomerReply {
  * The CreateCustomer method request.
  */
 message CreateCustomerRequest {
-	Account account = 1; /// The account.
-	Login login = 2; /// The login.
+	AtomiaGrpcAccount.Account account = 1; /// The account.
+	AtomiaGrpcAccount.Login login = 2; /// The login.
 	string password = 3; /// The password.
 	repeated string roles = 4; /// The roles.
-	AccountAddress mainAccountAddress = 5; /// The main address.
-	AccountAddress billingAccountAddress = 6; /// The billing address.
-	AccountAddress shipppingAccountAddress = 7; /// The shipping address.
+	AtomiaGrpcAccount.AccountAddress mainAccountAddress = 5; /// The main address.
+	AtomiaGrpcAccount.AccountAddress billingAccountAddress = 6; /// The billing address.
+	AtomiaGrpcAccount.AccountAddress shipppingAccountAddress = 7; /// The shipping address.
 	AccountDetails accountDetails = 8; /// The account details.
 	string orderNumber = 9; /// The order number.
 }
@@ -1714,7 +1715,7 @@ message ResellerGetAccountForUserRequest {
  * The ResellerGetAccountForUser method reply.
  */
 message ResellerGetAccountForUserReply {
-	Account account = 1; /// Account of provided user login.
+	AtomiaGrpcAccount.Account account = 1; /// Account of provided user login.
 }
 
 /**
@@ -1728,7 +1729,7 @@ message GetAccountForUserRequest {
  * The GetAccountForUser method reply.
  */
 message GetAccountForUserReply {
-	Account account = 1; /// Account of provided user login.
+	AtomiaGrpcAccount.Account account = 1; /// Account of provided user login.
 }
 
 /**
@@ -1743,8 +1744,8 @@ message ResellerGetAccountForUserWithDetailsRequest {
  * The ResellerGetAccountForUserWithDetails method reply.
  */
 message ResellerGetAccountForUserWithDetailsReply {
-	Account account = 1; /// Account for given username.
-	Language language = 2; /// The language.
+	AtomiaGrpcAccount.Account account = 1; /// Account for given username.
+	AtomiaGrpcAccount.Language language = 2; /// The language.
 	int32 subAccountsCount = 3; /// The subaccounts count.
 }
 
@@ -1759,8 +1760,8 @@ message GetAccountForUserWithDetailsRequest {
  * The GetAccountForUserWithDetails method reply.
  */
 message GetAccountForUserWithDetailsReply {
-	Account account = 1; /// Account for given username.
-	Language language = 2; /// The language.
+	AtomiaGrpcAccount.Account account = 1; /// Account for given username.
+	AtomiaGrpcAccount.Language language = 2; /// The language.
 	int32 subAccountsCount = 3; /// The subaccounts count.
 }
 
@@ -1775,7 +1776,7 @@ message GetAccountByIdRequest {
  * The GetAccountById method reply.
  */
 message GetAccountByIdReply {
-	Account account = 1; /// The requested account.
+	AtomiaGrpcAccount.Account account = 1; /// The requested account.
 }
 
 /**
@@ -1789,7 +1790,7 @@ message GetAccountByNameRequest {
  * The GetAccountByName method reply.
  */
 message GetAccountByNameReply {
-	Account account = 1; /// The requested account.
+	AtomiaGrpcAccount.Account account = 1; /// The requested account.
 }
 
 /**
@@ -1803,7 +1804,7 @@ message GetLanguageByCodeRequest {
  * The GetLanguageByCode method reply.
  */
 message GetLanguageByCodeReply {
-	Language language = 1; /// The requested language.
+	AtomiaGrpcAccount.Language language = 1; /// The requested language.
 }
 
 /**
@@ -1826,7 +1827,7 @@ message SearchSubAccountsRequest {
  */
 message SearchSubAccountsReply {
 	int32 total = 1; /// The total number of rows.
-	repeated Account accounts = 2; /// Filtered list of accounts.
+	repeated AtomiaGrpcAccount.Account accounts = 2; /// Filtered list of accounts.
 }
 
 /**
@@ -1849,7 +1850,7 @@ message ResellerSearchManagableAccountsRequest {
  */
 message ResellerSearchManagableAccountsReply {
 	int32 total = 1; /// The total number of rows.
-	repeated Account accounts = 2; /// Filtered list of accounts.
+	repeated AtomiaGrpcAccount.Account accounts = 2; /// Filtered list of accounts.
 }
 
 /**
@@ -1876,7 +1877,7 @@ message ListResellersWithCustomPricesRequest {
  * The ListResellersWithCustomPrices method reply.
  */
 message ListResellersWithCustomPricesReply {
-	repeated Account accounts = 1; /// List of resellers.
+	repeated AtomiaGrpcAccount.Account accounts = 1; /// List of resellers.
 }
 
 /**
@@ -3107,7 +3108,7 @@ message UpdateSubscriptionRenewalDataReply {
  * The GetSubscriptions method request.
  */
 message GetSubscriptionsRequest {
-	Account account = 1; /// The account.
+	AtomiaGrpcAccount.Account account = 1; /// The account.
 	repeated string allowedStates = 2; /// The allowed states.
 	repeated string notAllowedStates = 3; /// Not allowed states.
 }
@@ -3123,7 +3124,7 @@ message GetSubscriptionsReply {
  * The GetSubscriptionsForCustomer method request.
  */
 message GetSubscriptionsForCustomerRequest {
-	Account customer = 1; /// The customer.
+	AtomiaGrpcAccount.Account customer = 1; /// The customer.
 	repeated string allowedStates = 2; /// The allowed states.
 	repeated string notAllowedStates = 3; /// Not allowed states.
 }
@@ -3139,7 +3140,7 @@ message GetSubscriptionsForCustomerReply {
  * The GetPackageSubscriptions method request.
  */
 message GetPackageSubscriptionsRequest {
-	Account customer = 1; /// The customer.
+	AtomiaGrpcAccount.Account customer = 1; /// The customer.
 	repeated string allowedStates = 2; /// The allowed states.
 	repeated string notAllowedStates = 3; /// Not allowed states.
 }
@@ -3156,7 +3157,7 @@ message GetPackageSubscriptionsReply {
  */
 message GetSubscriptionByIdRequest {
 	AtomiaGrpcBaseTypes.Guid subscriptionId = 1; /// The subscription id.
-	Account account = 2; /// The account.
+	AtomiaGrpcAccount.Account account = 2; /// The account.
 }
 
 /**
@@ -3186,7 +3187,7 @@ message GetSubscriptionsByIdsAndLanguageReply {
  */
 message GetSubscriptionByFriendlyIdRequest {
 	string subscriptionFriendlyId = 1; /// The friendly id of the subscription.
-	Account account = 2; /// The account.
+	AtomiaGrpcAccount.Account account = 2; /// The account.
 }
 
 /**
@@ -3201,7 +3202,7 @@ message GetSubscriptionByFriendlyIdReply {
  */
 message GetSubscriptionsByFriendlyIdRequest {
 	string subscriptionFriendlyId = 1; /// The friendly id of the subscription.
-	Account account = 2; /// The account.
+	AtomiaGrpcAccount.Account account = 2; /// The account.
 }
 
 /**
@@ -3714,7 +3715,7 @@ message GetCurrencyByCodeReply {
  */
 message CreateItemRequest {
 	Item item = 1; /// The item to be created.
-	Account account = 2; /// The account.
+	AtomiaGrpcAccount.Account account = 2; /// The account.
 }
 
 /**
@@ -3842,7 +3843,7 @@ message GetItemByArticleNumberReply {
  * The GetItems method request.
  */
 message GetItemsRequest {
-	Account account = 1; /// The account.
+	AtomiaGrpcAccount.Account account = 1; /// The account.
 	int32 pageSize = 2; /// The page size.
 	int32 rowStart = 3; /// The start row.
 	string order = 4; /// The order (asc or desc).
@@ -3885,7 +3886,7 @@ message GetItemsForPublicOrderReply {
  * The GetAvailableItems method request.
  */
 message GetAvailableItemsRequest {
-	Account account = 1; /// The account for which to get items.
+	AtomiaGrpcAccount.Account account = 1; /// The account for which to get items.
 }
 
 /**
@@ -4062,7 +4063,7 @@ message ListItemsForResellerReply {
  * The GetItemsForCurrency method request.
  */
 message GetItemsForCurrencyRequest {
-	Account account = 1; /// The account.
+	AtomiaGrpcAccount.Account account = 1; /// The account.
 	int32 pageSize = 2; /// The page size.
 	int32 rowStart = 3; /// The row start.
 	string order = 4; /// The order (asc or desc).
@@ -4877,7 +4878,7 @@ message ParsePaymentFileReply {
 message ParsePaymentFileForResellerRequest {
 	string filePath = 1; /// The file path.
 	string batchTimestampPart = 2; /// Timestamp part for current batch.
-	Account reseller = 3; /// The reseller account.
+	AtomiaGrpcAccount.Account reseller = 3; /// The reseller account.
 }
 
 /**
@@ -4969,7 +4970,7 @@ message GetPaymentMatchResultReply {
  */
 message ProcessPayFileRecordsRequest {
 	repeated AtomiaGrpcBaseTypes.Guid recordIds = 1; /// The list of pay file record ids.
-	Account resellerAccount = 2; /// The reseller account.
+	AtomiaGrpcAccount.Account resellerAccount = 2; /// The reseller account.
 }
 
 /**
@@ -5236,7 +5237,7 @@ message GetAccountRequest {
  * The GetAccount method reply.
  */
 message GetAccountReply {
-	Account account = 1; /// Account data of currently signed in user.
+	AtomiaGrpcAccount.Account account = 1; /// Account data of currently signed in user.
 }
 
 /**
@@ -5689,7 +5690,7 @@ message GetUpgradeOptionsReply {
  * The IsUpgradeableOrDowngradeable method request.
  */
 message IsUpgradeableOrDowngradeableRequest {
-	Account account = 1; /// The account.
+	AtomiaGrpcAccount.Account account = 1; /// The account.
 	repeated AtomiaGrpcBaseTypes.Guid subscriptionIds = 2; /// The list of subscription ids to check.
 }
 
@@ -6100,7 +6101,7 @@ message GetCountriesRequest {
  * The GetCountries method reply.
  */
 message GetCountriesReply {
-	repeated Country countries = 1; /// List of all countries.
+	repeated AtomiaGrpcAccount.Country countries = 1; /// List of all countries.
 }
 
 /**
@@ -6516,7 +6517,7 @@ message ListLanguagesRequest {
  * The ListLanguages method reply.
  */
 message ListLanguagesReply {
-	repeated Language languages = 1; /// List of languages.
+	repeated AtomiaGrpcAccount.Language languages = 1; /// List of languages.
 }
 
 /**
@@ -7183,96 +7184,6 @@ message ResellerConfigurationCustomAttribute {
 	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
 	string name = 2; /// Name.
 	string value = 3; /// Value.
-}
-
-/**
- * The AccountAddress data type.
- */
-message AccountAddress {
-	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
-	string companyName = 2; /// Company name.
-	string companyNumber = 3; /// Company number.
-	string firstName = 4; /// First name.
-	string lastName = 5; /// Last name.
-	string address = 6; /// Address.
-	string address2 = 7; /// Address2.
-	string city = 8; /// City.
-	string zip = 9; /// Zip.
-	Country country = 10; /// Country.
-	string state = 11; /// State.
-	string email = 12; /// Email.
-	string phone = 13; /// Phone.
-	string fax = 14; /// Fax.
-	string mobile = 15; /// Mobile.
-}
-
-/**
- * The Country data type.
- */
-message Country {
-	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
-	string name = 2; /// Name.
-	string code = 3; /// Code.
-	string tag = 4; /// Tag.
-	repeated State states = 5; /// States.
-}
-
-/**
- * The State data type.
- */
-message State {
-	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
-	Country country = 2; /// Country.
-	string name = 3; /// Name.
-	string code = 4; /// Code.
-}
-
-/**
- * The Account data type.
- */
-message Account {
-	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
-	AtomiaGrpcBaseTypes.Guid parentAccountId = 2; /// Parent account id.
-	string name = 3; /// Name.
-	string description = 4; /// Description.
-	string state = 5; /// State.
-	string type = 6; /// Type.
-	map<string, string> customAttributes = 7; /// Custom attributes.
-	AtomiaGrpcBaseTypes.Guid defaultLanguageId = 8; /// Default language id.
-	Language language = 9; /// Language.
-	string parentAccountName = 10; /// Parent account name.
-	AtomiaGrpcBaseTypes.Guid mainAddressId = 11; /// Main address id.
-	AccountAddress mainAddress = 12; /// Main address.
-	AtomiaGrpcBaseTypes.Guid shippingAddressId = 13; /// Shipping address id.
-	AccountAddress shippingAddress = 14; /// Shipping address.
-	AtomiaGrpcBaseTypes.Guid billingAddressId = 15; /// Billing address id.
-	AccountAddress billingAddress = 16; /// Billing address.
-	bool terminated = 17; /// Terminated.
-	string companyName = 18; /// Company name.
-	string firstName = 19; /// First name.
-	string lastName = 20; /// Last name.
-	string passwordPattern = 21; /// Password pattern.
-	map<string, string> identityProperties = 22; /// Identity properties.
-}
-
-/**
- * The Login data type.
- */
-message Login {
-	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
-	string username = 2; /// Username.
-	AtomiaGrpcBaseTypes.Guid accountId = 3; /// Account id.
-	bool isOwnAccount = 4; /// Is own account.
-}
-
-/**
- * The Language data type.
- */
-message Language {
-	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
-	string name = 2; /// Name.
-	string iso639Name = 3; /// Iso639 name.
-	string culture = 4; /// Culture.
 }
 
 /**
@@ -7953,7 +7864,7 @@ message ResellerCommission {
 	}
 	ResellerCommissionStatus status = 4; /// Status.
 	AtomiaGrpcBaseTypes.NullableUnixTime payoutDate = 5; /// Payout date.
-	Account reseller = 6; /// Reseller.
+	AtomiaGrpcAccount.Account reseller = 6; /// Reseller.
 }
 
 /**
