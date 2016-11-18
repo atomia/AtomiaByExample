@@ -7,6 +7,8 @@ var Getopt = require('node-getopt');
 
 var base_proto_path = __dirname + '/../proto/AtomiaGrpcBaseTypes.proto';
 var base_proto = grpc.load(base_proto_path).AtomiaGrpcBaseTypes;
+var account_proto_path = __dirname + '/../proto/AtomiaGrpcAccount.proto';
+var account_proto = grpc.load(account_proto_path).AtomiaGrpcBilling;
 var billing_proto_path = __dirname + '/../proto/AtomiaGrpcBilling.proto';
 var billing_proto = grpc.load(billing_proto_path).AtomiaGrpcBilling;
 

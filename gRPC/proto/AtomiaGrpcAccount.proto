@@ -1,0 +1,1101 @@
+syntax = "proto3";
+package AtomiaGrpcAccount;
+option csharp_namespace = "Atomia.Grpc.Account";
+import "AtomiaGrpcBaseTypes.proto";
+
+// Api methods
+service AtomiaGrpcAccount {
+	/// Echoes the specified message.
+	rpc Echo (EchoRequest) returns (EchoReply) {}
+
+	/// Gets the account data for the parent account of the account with the given id.
+	rpc GetParentAccount (GetParentAccountRequest) returns (GetParentAccountReply) {}
+
+	/// Gets the account data for the account with the specified Id.
+	rpc GetAccountById (GetAccountByIdRequest) returns (GetAccountByIdReply) {}
+
+	/// Gets the account data for the accounts in the given list of ids with the specified Id.
+	rpc GetAccounts (GetAccountsRequest) returns (GetAccountsReply) {}
+
+	/// Gets the account data for the existing accounts in the given list of ids with the specified Id. Missing accounts is not a failure.
+	rpc GetExistingAccounts (GetExistingAccountsRequest) returns (GetExistingAccountsReply) {}
+
+	/// Gets the account data for the account with the specified account name.
+	rpc GetAccountByName (GetAccountByNameRequest) returns (GetAccountByNameReply) {}
+
+	/// Gets accounts by company number.
+	rpc GetAccountsByCompanyNumber (GetAccountsByCompanyNumberRequest) returns (GetAccountsByCompanyNumberReply) {}
+
+	/// Gets the account to which user with the specified username belongs.
+	rpc ResellerGetAccountForUser (ResellerGetAccountForUserRequest) returns (ResellerGetAccountForUserReply) {}
+
+	/// Gets the account to which user with the specified username belongs.
+	rpc GetAccountForUser (GetAccountForUserRequest) returns (GetAccountForUserReply) {}
+
+	/// Gets the account to which user with the specified username belongs and fills user's details.
+	rpc ResellerGetAccountForUserWithDetails (ResellerGetAccountForUserWithDetailsRequest) returns (ResellerGetAccountForUserWithDetailsReply) {}
+
+	/// Gets the account to which user with the specified username belongs and fills user's details.
+	rpc GetAccountForUserWithDetails (GetAccountForUserWithDetailsRequest) returns (GetAccountForUserWithDetailsReply) {}
+
+	/// Gets the account to wich user with the specified username belongs and fills user's details.
+	rpc ResellerGetAccountWithDetails (ResellerGetAccountWithDetailsRequest) returns (ResellerGetAccountWithDetailsReply) {}
+
+	/// Gets accounts for specified usernames.
+	rpc GetAccountsForUsers (GetAccountsForUsersRequest) returns (GetAccountsForUsersReply) {}
+
+	/// Checks user exist with email.
+	rpc ResellerCheckEmail (ResellerCheckEmailRequest) returns (ResellerCheckEmailReply) {}
+
+	/// Checks user exist with email.
+	rpc CheckEmail (CheckEmailRequest) returns (CheckEmailReply) {}
+
+	/// Gets the top level account details.
+	rpc GetMasterAccount (GetMasterAccountRequest) returns (GetMasterAccountReply) {}
+
+	/// Checks if given account is a child of account (only one level).
+	rpc CheckIfSubAccountExists (CheckIfSubAccountExistsRequest) returns (CheckIfSubAccountExistsReply) {}
+
+	/// Determines whether the specified subaccount id is a child of parent account.
+	rpc IsSubaccount (IsSubaccountRequest) returns (IsSubaccountReply) {}
+
+	/// Determines whether given user is owner of given subaccount.
+	rpc ResellerIsOwnerOfSubaccount (ResellerIsOwnerOfSubaccountRequest) returns (ResellerIsOwnerOfSubaccountReply) {}
+
+	/// Determines whether given user is owner of given subaccount.
+	rpc IsOwnerOfSubaccount (IsOwnerOfSubaccountRequest) returns (IsOwnerOfSubaccountReply) {}
+
+	/// Updates the account details. Can be also used to mark account as terminated.
+	rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountReply) {}
+
+	/// Gets all the users for the account with the specified id.
+	rpc ListUsers (ListUsersRequest) returns (ListUsersReply) {}
+
+	/// Gets all languages.
+	rpc GetAllLanguages (GetAllLanguagesRequest) returns (GetAllLanguagesReply) {}
+
+	/// Gets the language by id.
+	rpc GetLanguageById (GetLanguageByIdRequest) returns (GetLanguageByIdReply) {}
+
+	/// Gets the language by code.
+	rpc GetLanguageByCode (GetLanguageByCodeRequest) returns (GetLanguageByCodeReply) {}
+
+	/// Gets the default language.
+	rpc GetDefaultLanguage (GetDefaultLanguageRequest) returns (GetDefaultLanguageReply) {}
+
+	/// Adds the account with login and addresses.
+	rpc AddAccountWithLoginAndAddresses (AddAccountWithLoginAndAddressesRequest) returns (AddAccountWithLoginAndAddressesReply) {}
+
+	/// Removes user.
+	rpc ResellerRemoveUser (ResellerRemoveUserRequest) returns (ResellerRemoveUserReply) {}
+
+	/// Removes user.
+	rpc RemoveUser (RemoveUserRequest) returns (RemoveUserReply) {}
+
+	/// Gets the user by the username.
+	rpc ResellerGetByUsername (ResellerGetByUsernameRequest) returns (ResellerGetByUsernameReply) {}
+
+	/// Gets the user by the username.
+	rpc GetByUsername (GetByUsernameRequest) returns (GetByUsernameReply) {}
+
+	/// Gets all countries.
+	rpc GetAllCountries (GetAllCountriesRequest) returns (GetAllCountriesReply) {}
+
+	/// Gets the country code.
+	rpc GetCountryCode (GetCountryCodeRequest) returns (GetCountryCodeReply) {}
+
+	/// Gets the country code.
+	rpc GetCountry (GetCountryRequest) returns (GetCountryReply) {}
+
+	/// Gets the account address by id.
+	rpc GetAccountAddressById (GetAccountAddressByIdRequest) returns (GetAccountAddressByIdReply) {}
+
+	/// Updates the account addresses.
+	rpc UpdateAccountAddresses (UpdateAccountAddressesRequest) returns (UpdateAccountAddressesReply) {}
+
+	/// Gets the language for a user.
+	rpc ResellerGetLanguage (ResellerGetLanguageRequest) returns (ResellerGetLanguageReply) {}
+
+	/// Gets the language for a user.
+	rpc GetLanguage (GetLanguageRequest) returns (GetLanguageReply) {}
+
+	/// Changes the status.
+	rpc ChangeStatus (ChangeStatusRequest) returns (ChangeStatusReply) {}
+
+	/// Lists the accounts.
+	rpc ListAccounts (ListAccountsRequest) returns (ListAccountsReply) {}
+
+	/// Adds an entry to the login table.
+	rpc ResellerAddExtraUsernameAccount (ResellerAddExtraUsernameAccountRequest) returns (ResellerAddExtraUsernameAccountReply) {}
+
+	/// Removes an entry from the login table.
+	rpc ResellerRemoveExtraUsernameAccount (ResellerRemoveExtraUsernameAccountRequest) returns (ResellerRemoveExtraUsernameAccountReply) {}
+
+	/// Lists all logins for the username where the IsOwnAccount is set to false.
+	rpc ResellerGetExtraUsernameAccounts (ResellerGetExtraUsernameAccountsRequest) returns (ResellerGetExtraUsernameAccountsReply) {}
+
+	/// Checks if the account id is an extra account for the username.
+	rpc ResellerHasExtraUsernameAccount (ResellerHasExtraUsernameAccountRequest) returns (ResellerHasExtraUsernameAccountReply) {}
+
+	/// Searches the users and returns detailed account information.
+	rpc SearchUsersWithDetails (SearchUsersWithDetailsRequest) returns (SearchUsersWithDetailsReply) {}
+
+	/// Get all available categories
+	rpc GetPerformanceCategories (GetPerformanceCategoriesRequest) returns (GetPerformanceCategoriesReply) {}
+
+	/// Returns the value of the performance counter.
+	rpc GetPerformanceCounter (GetPerformanceCounterRequest) returns (GetPerformanceCounterReply) {}
+
+	/// Returns the value of the performance counter instance.
+	rpc GetPerformanceCounterInstance (GetPerformanceCounterInstanceRequest) returns (GetPerformanceCounterInstanceReply) {}
+
+	/// Returns the average value of a multi instance performance counter.
+	rpc GetMultiInstancePerformanceCounterAverage (GetMultiInstancePerformanceCounterAverageRequest) returns (GetMultiInstancePerformanceCounterAverageReply) {}
+
+	/// Get currently executing methods and scheduled tasks.
+	rpc GetExecutingMethods (GetExecutingMethodsRequest) returns (GetExecutingMethodsReply) {}
+
+	/// Gets current version info.
+	rpc GetVersionInfo (GetVersionInfoRequest) returns (GetVersionInfoReply) {}
+}
+
+// Request and replies
+/**
+ * The Echo method request
+ */
+message EchoRequest {
+	string message = 1; /// Message.
+}
+
+/**
+ * The Echo method reply
+ */
+message EchoReply {
+	string message = 1; /// Message.
+}
+
+/**
+ * The GetParentAccount method request
+ */
+message GetParentAccountRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+}
+
+/**
+ * The GetParentAccount method reply
+ */
+message GetParentAccountReply {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The GetAccountById method request
+ */
+message GetAccountByIdRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+}
+
+/**
+ * The GetAccountById method reply
+ */
+message GetAccountByIdReply {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The GetAccounts method request
+ */
+message GetAccountsRequest {
+	repeated AtomiaGrpcBaseTypes.Guid accountIds = 1; /// Account ids.
+}
+
+/**
+ * The GetAccounts method reply
+ */
+message GetAccountsReply {
+	repeated Account accounts = 1; /// Accounts.
+}
+
+/**
+ * The GetExistingAccounts method request
+ */
+message GetExistingAccountsRequest {
+	repeated AtomiaGrpcBaseTypes.Guid accountIds = 1; /// Account ids.
+}
+
+/**
+ * The GetExistingAccounts method reply
+ */
+message GetExistingAccountsReply {
+	repeated Account accounts = 1; /// Accounts.
+}
+
+/**
+ * The GetAccountByName method request
+ */
+message GetAccountByNameRequest {
+	string accountName = 1; /// Account name.
+}
+
+/**
+ * The GetAccountByName method reply
+ */
+message GetAccountByNameReply {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The GetAccountsByCompanyNumber method request
+ */
+message GetAccountsByCompanyNumberRequest {
+	string companyNumber = 1; /// Company number.
+}
+
+/**
+ * The GetAccountsByCompanyNumber method reply
+ */
+message GetAccountsByCompanyNumberReply {
+	repeated Account accounts = 1; /// Accounts.
+}
+
+/**
+ * The ResellerGetAccountForUser method request
+ */
+message ResellerGetAccountForUserRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerGetAccountForUser method reply
+ */
+message ResellerGetAccountForUserReply {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The GetAccountForUser method request
+ */
+message GetAccountForUserRequest {
+	string username = 1; /// Username.
+}
+
+/**
+ * The GetAccountForUser method reply
+ */
+message GetAccountForUserReply {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The ResellerGetAccountForUserWithDetails method request
+ */
+message ResellerGetAccountForUserWithDetailsRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerGetAccountForUserWithDetails method reply
+ */
+message ResellerGetAccountForUserWithDetailsReply {
+	Account account = 1; /// Account.
+	Language language = 2; /// Language.
+	int32 subAccountsCount = 3; /// Subaccounts count.
+}
+
+/**
+ * The GetAccountForUserWithDetails method request
+ */
+message GetAccountForUserWithDetailsRequest {
+	string username = 1; /// Username.
+}
+
+/**
+ * The GetAccountForUserWithDetails method reply
+ */
+message GetAccountForUserWithDetailsReply {
+	Account account = 1; /// Account.
+	Language language = 2; /// Language.
+	int32 subAccountsCount = 3; /// Subaccounts count.
+}
+
+/**
+ * The ResellerGetAccountWithDetails method request
+ */
+message ResellerGetAccountWithDetailsRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerGetAccountWithDetails method reply
+ */
+message ResellerGetAccountWithDetailsReply {
+	Account account = 1; /// Account.
+	Language language = 2; /// Language.
+	int32 managableAccountsCount = 3; /// Managable accounts count.
+}
+
+/**
+ * The GetAccountsForUsers method request
+ */
+message GetAccountsForUsersRequest {
+	repeated string usernames = 1; /// Usernames.
+}
+
+/**
+ * The GetAccountsForUsers method reply
+ */
+message GetAccountsForUsersReply {
+	repeated UsersAccounts usersAccounts = 1; /// User accounts.
+}
+
+/**
+ * The ResellerCheckEmail method request
+ */
+message ResellerCheckEmailRequest {
+	string email = 1; /// Email.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerCheckEmail method reply
+ */
+message ResellerCheckEmailReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The CheckEmail method request
+ */
+message CheckEmailRequest {
+	string email = 1; /// Email.
+}
+
+/**
+ * The CheckEmail method reply
+ */
+message CheckEmailReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The GetMasterAccount method request
+ */
+message GetMasterAccountRequest {
+}
+
+/**
+ * The GetMasterAccount method reply
+ */
+message GetMasterAccountReply {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The CheckIfSubAccountExists method request
+ */
+message CheckIfSubAccountExistsRequest {
+	AtomiaGrpcBaseTypes.Guid parentAccountId = 1; /// Parent account id.
+	string givenAccount = 2; /// Given account.
+}
+
+/**
+ * The CheckIfSubAccountExists method reply
+ */
+message CheckIfSubAccountExistsReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The IsSubaccount method request
+ */
+message IsSubaccountRequest {
+	AtomiaGrpcBaseTypes.Guid parentAccountId = 1; /// Parent account id.
+	AtomiaGrpcBaseTypes.Guid subAccountId = 2; /// Sub account id.
+}
+
+/**
+ * The IsSubaccount method reply
+ */
+message IsSubaccountReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The ResellerIsOwnerOfSubaccount method request
+ */
+message ResellerIsOwnerOfSubaccountRequest {
+	string username = 1; /// Username.
+	AtomiaGrpcBaseTypes.Guid subAccountId = 2; /// Sub account id.
+	string resellerRootDomain = 3; /// Reseller root domain.
+}
+
+/**
+ * The ResellerIsOwnerOfSubaccount method reply
+ */
+message ResellerIsOwnerOfSubaccountReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The IsOwnerOfSubaccount method request
+ */
+message IsOwnerOfSubaccountRequest {
+	string username = 1; /// Username.
+	AtomiaGrpcBaseTypes.Guid subAccountId = 2; /// Sub account id.
+}
+
+/**
+ * The IsOwnerOfSubaccount method reply
+ */
+message IsOwnerOfSubaccountReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The UpdateAccount method request
+ */
+message UpdateAccountRequest {
+	Account account = 1; /// Account.
+}
+
+/**
+ * The UpdateAccount method reply
+ */
+message UpdateAccountReply {
+}
+
+/**
+ * The ListUsers method request
+ */
+message ListUsersRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+}
+
+/**
+ * The ListUsers method reply
+ */
+message ListUsersReply {
+	repeated string usernames = 1; /// Usernames.
+}
+
+/**
+ * The GetAllLanguages method request
+ */
+message GetAllLanguagesRequest {
+}
+
+/**
+ * The GetAllLanguages method reply
+ */
+message GetAllLanguagesReply {
+	repeated Language languages = 1; /// Languages.
+}
+
+/**
+ * The GetLanguageById method request
+ */
+message GetLanguageByIdRequest {
+	AtomiaGrpcBaseTypes.Guid languageId = 1; /// Language id.
+}
+
+/**
+ * The GetLanguageById method reply
+ */
+message GetLanguageByIdReply {
+	Language language = 1; /// Language.
+}
+
+/**
+ * The GetLanguageByCode method request
+ */
+message GetLanguageByCodeRequest {
+	string code = 1; /// Code.
+}
+
+/**
+ * The GetLanguageByCode method reply
+ */
+message GetLanguageByCodeReply {
+	Language language = 1; /// Language.
+}
+
+/**
+ * The GetDefaultLanguage method request
+ */
+message GetDefaultLanguageRequest {
+}
+
+/**
+ * The GetDefaultLanguage method reply
+ */
+message GetDefaultLanguageReply {
+	Language language = 1; /// Language.
+}
+
+/**
+ * The AddAccountWithLoginAndAddresses method request
+ */
+message AddAccountWithLoginAndAddressesRequest {
+	Account account = 1; /// Account.
+	Login login = 2; /// Login.
+	string password = 3; /// Password.
+	repeated string roles = 4; /// Roles.
+	AccountAddress mainAccountAddress = 5; /// Main account address.
+	AccountAddress shippingAccountAddress = 6; /// Shipping account address.
+	AccountAddress billingAccountAddress = 7; /// Billing account address.
+}
+
+/**
+ * The AddAccountWithLoginAndAddresses method reply
+ */
+message AddAccountWithLoginAndAddressesReply {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+}
+
+/**
+ * The ResellerRemoveUser method request
+ */
+message ResellerRemoveUserRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerRemoveUser method reply
+ */
+message ResellerRemoveUserReply {
+}
+
+/**
+ * The RemoveUser method request
+ */
+message RemoveUserRequest {
+	string username = 1; /// Username.
+}
+
+/**
+ * The RemoveUser method reply
+ */
+message RemoveUserReply {
+}
+
+/**
+ * The ResellerGetByUsername method request
+ */
+message ResellerGetByUsernameRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerGetByUsername method reply
+ */
+message ResellerGetByUsernameReply {
+	AtomiaUser atomiaUser = 1; /// Atomia user.
+}
+
+/**
+ * The GetByUsername method request
+ */
+message GetByUsernameRequest {
+	string username = 1; /// Username.
+}
+
+/**
+ * The GetByUsername method reply
+ */
+message GetByUsernameReply {
+	AtomiaUser atomiaUser = 1; /// Atomia user.
+}
+
+/**
+ * The GetAllCountries method request
+ */
+message GetAllCountriesRequest {
+}
+
+/**
+ * The GetAllCountries method reply
+ */
+message GetAllCountriesReply {
+	repeated Country countries = 1; /// Countries.
+}
+
+/**
+ * The GetCountryCode method request
+ */
+message GetCountryCodeRequest {
+	string countryCode = 1; /// Country code.
+}
+
+/**
+ * The GetCountryCode method reply
+ */
+message GetCountryCodeReply {
+	Country country = 1; /// Country.
+}
+
+/**
+ * The GetCountry method request
+ */
+message GetCountryRequest {
+	AtomiaGrpcBaseTypes.Guid countryId = 1; /// Country id.
+}
+
+/**
+ * The GetCountry method reply
+ */
+message GetCountryReply {
+	Country country = 1; /// Country.
+}
+
+/**
+ * The GetAccountAddressById method request
+ */
+message GetAccountAddressByIdRequest {
+	AtomiaGrpcBaseTypes.Guid accountAddressId = 1; /// Account address id.
+}
+
+/**
+ * The GetAccountAddressById method reply
+ */
+message GetAccountAddressByIdReply {
+	AccountAddress accountAddress = 1; /// Account address.
+}
+
+/**
+ * The UpdateAccountAddresses method request
+ */
+message UpdateAccountAddressesRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+	AccountAddress mainAccountAddress = 2; /// Main account address.
+	AccountAddress shippingAccountAddress = 3; /// Shipping account address.
+	AccountAddress billingAccountAddress = 4; /// Billing account address.
+}
+
+/**
+ * The UpdateAccountAddresses method reply
+ */
+message UpdateAccountAddressesReply {
+}
+
+/**
+ * The ResellerGetLanguage method request
+ */
+message ResellerGetLanguageRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerGetLanguage method reply
+ */
+message ResellerGetLanguageReply {
+	Language language = 1; /// Language.
+}
+
+/**
+ * The GetLanguage method request
+ */
+message GetLanguageRequest {
+	string username = 1; /// Username.
+}
+
+/**
+ * The GetLanguage method reply
+ */
+message GetLanguageReply {
+	Language language = 1; /// Language.
+}
+
+/**
+ * The ChangeStatus method request
+ */
+message ChangeStatusRequest {
+	AtomiaGrpcBaseTypes.Guid accountId = 1; /// Account id.
+	string newStatus = 2; /// New status.
+}
+
+/**
+ * The ChangeStatus method reply
+ */
+message ChangeStatusReply {
+}
+
+/**
+ * The ListAccounts method request
+ */
+message ListAccountsRequest {
+	int32 firstRow = 1; /// First row.
+	int32 pageSize = 2; /// Page size.
+	string sortOrder = 3; /// Sort order.
+	string propertyNameToOrder = 4; /// Property name to order.
+	repeated StrSearchingRestrictionDict disjunctions = 5; /// Disjunctions.
+	repeated StrSearchingRestrictionDict conjunctions = 6; /// Conjuctions.
+}
+
+/**
+ * The ListAccounts method reply
+ */
+message ListAccountsReply {
+	int32 totalRows = 1; /// Total rows
+	repeated Account accounts = 2; /// Accounts
+}
+
+/**
+ * The ResellerAddExtraUsernameAccount method request
+ */
+message ResellerAddExtraUsernameAccountRequest {
+	string username = 1; /// Username.
+	AtomiaGrpcBaseTypes.Guid accountId = 2; /// Account id.
+	string resellerRootDomain = 3; /// Reseller root domain.
+}
+
+/**
+ * The ResellerAddExtraUsernameAccount method reply
+ */
+message ResellerAddExtraUsernameAccountReply {
+}
+
+/**
+ * The ResellerRemoveExtraUsernameAccount method request
+ */
+message ResellerRemoveExtraUsernameAccountRequest {
+	string username = 1; /// Username.
+	AtomiaGrpcBaseTypes.Guid accountId = 2; /// Account id.
+	string resellerRootDomain = 3; /// Reseller root domain.
+}
+
+/**
+ * The ResellerRemoveExtraUsernameAccount method reply
+ */
+message ResellerRemoveExtraUsernameAccountReply {
+}
+
+/**
+ * The ResellerGetExtraUsernameAccounts method request
+ */
+message ResellerGetExtraUsernameAccountsRequest {
+	string username = 1; /// Username.
+	string resellerRootDomain = 2; /// Reseller root domain.
+}
+
+/**
+ * The ResellerGetExtraUsernameAccounts method reply
+ */
+message ResellerGetExtraUsernameAccountsReply {
+	repeated AtomiaGrpcBaseTypes.Guid accountIds = 1; /// Account ids.
+}
+
+/**
+ * The ResellerHasExtraUsernameAccount method request
+ */
+message ResellerHasExtraUsernameAccountRequest {
+	string username = 1; /// Username.
+	AtomiaGrpcBaseTypes.Guid accountId = 2; /// Account id.
+	string resellerRootDomain = 3; /// Reseller root domain.
+}
+
+/**
+ * The ResellerHasExtraUsernameAccount method reply
+ */
+message ResellerHasExtraUsernameAccountReply {
+	bool status = 1; /// Status.
+}
+
+/**
+ * The SearchUsersWithDetails method request
+ */
+message SearchUsersWithDetailsRequest {
+	int32 pageIndex = 1; /// Page index.
+	int32 pageSize = 2; /// Page size.
+	string searchPattern = 3; /// Search pattern.
+	string sortingDirection = 4; /// Sorting direction.
+	AtomiaGrpcBaseTypes.Guid accountId = 5; /// Account id.
+}
+
+/**
+ * The SearchUsersWithDetails method reply
+ */
+message SearchUsersWithDetailsReply {
+	repeated UserDetails userDetails = 1; /// User details.
+	int32 total = 2; /// Total.
+}
+
+/**
+ * The GetPerformanceCategories method request
+ */
+message GetPerformanceCategoriesRequest {
+}
+
+/**
+ * The GetPerformanceCategories method reply
+ */
+message GetPerformanceCategoriesReply {
+	repeated string categories = 1; /// Categories.
+}
+
+/**
+ * The GetPerformanceCounter method request
+ */
+message GetPerformanceCounterRequest {
+	string categoryName = 1; /// Category name.
+	string counterName = 2; /// Counter name.
+}
+
+/**
+ * The GetPerformanceCounter method reply
+ */
+message GetPerformanceCounterReply {
+	double value = 1; /// Value.
+}
+
+/**
+ * The GetPerformanceCounterInstance method request
+ */
+message GetPerformanceCounterInstanceRequest {
+	string categoryName = 1; /// Category name.
+	string counterName = 2; /// Counter name.
+	string instanceName = 3; /// Instance name.
+}
+
+/**
+ * The GetPerformanceCounterInstance method reply
+ */
+message GetPerformanceCounterInstanceReply {
+	double value = 1; /// Value.
+}
+
+/**
+ * The GetMultiInstancePerformanceCounterAverage method request
+ */
+message GetMultiInstancePerformanceCounterAverageRequest {
+	string categoryName = 1; /// Category name.
+	string counterName = 2; /// Counter name.
+}
+
+/**
+ * The GetMultiInstancePerformanceCounterAverage method reply
+ */
+message GetMultiInstancePerformanceCounterAverageReply {
+	double value = 1; /// Value.
+}
+
+/**
+ * The GetExecutingMethods method request
+ */
+message GetExecutingMethodsRequest {
+}
+
+/**
+ * The GetExecutingMethods method reply
+ */
+message GetExecutingMethodsReply {
+	repeated StrRepeatedExecutingMethodDict executingMethods = 1; /// Executing methods.
+}
+
+/**
+ * The GetVersionInfo method request
+ */
+message GetVersionInfoRequest {
+}
+
+/**
+ * The GetVersionInfo method reply
+ */
+message GetVersionInfoReply {
+	repeated StrVersionInfoDict versions = 1; /// Versions.
+}
+
+// Business objects
+
+/**
+ * The Account data type.
+ */
+message Account {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	AtomiaGrpcBaseTypes.Guid parentAccountId = 2; /// Parent account id.
+	string name = 3; /// Name.
+	string description = 4; /// Description.
+	string state = 5; /// State.
+	string type = 6; /// Type.
+	map<string, string> customAttributes = 7; /// Custom attributes.
+	AtomiaGrpcBaseTypes.Guid defaultLanguageId = 8; /// Default language id.
+	Language language = 9; /// Language.
+	string parentAccountName = 10; /// Parent account name.
+	AtomiaGrpcBaseTypes.Guid mainAddressId = 11; /// Main address id.
+	AccountAddress mainAddress = 12; /// Main address.
+	AtomiaGrpcBaseTypes.Guid shippingAddressId = 13; /// Shipping address id.
+	AccountAddress shippingAddress = 14; /// Shipping address.
+	AtomiaGrpcBaseTypes.Guid billingAddressId = 15; /// Billing address id.
+	AccountAddress billingAddress = 16; /// Billing address.
+	bool terminated = 17; /// Terminated.
+	string companyName = 18; /// Company name.
+	string firstName = 19; /// First name.
+	string lastName = 20; /// Last name.
+	string passwordPattern = 21; /// Password pattern.
+	map<string, string> identityProperties = 22; /// Identity properties.
+}
+
+/**
+ * The Language data type.
+ */
+message Language {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	string iso639Name = 3; /// Iso639 name.
+	string culture = 4; /// Culture.
+}
+
+/**
+ * The UsersAccounts data type.
+ */
+message UsersAccounts {
+	Account account = 1; /// Account.
+	string username = 2; /// Username.
+}
+
+/**
+ * The Country data type.
+ */
+message Country {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	string code = 3; /// Code.
+	string tag = 4; /// Tag.
+	repeated State states = 5; /// States.
+}
+
+/**
+ * The Login data type.
+ */
+message Login {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string username = 2; /// Username.
+	AtomiaGrpcBaseTypes.Guid accountId = 3; /// Account id.
+	bool isOwnAccount = 4; /// Is own account.
+}
+
+/**
+ * The AccountAddress data type.
+ */
+message AccountAddress {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string companyName = 2; /// Company name.
+	string companyNumber = 3; /// Company number.
+	string firstName = 4; /// First name.
+	string lastName = 5; /// Last name.
+	string address = 6; /// Address.
+	string address2 = 7; /// Address2.
+	string city = 8; /// City.
+	string zip = 9; /// Zip.
+	Country country = 10; /// Country.
+	string state = 11; /// State.
+	string email = 12; /// Email.
+	string phone = 13; /// Phone.
+	string fax = 14; /// Fax.
+	string mobile = 15; /// Mobile.
+}
+
+/**
+ * The AtomiaUser data type.
+ */
+message AtomiaUser {
+	string username = 1; /// Username.
+	string email = 2; /// Email.
+	repeated string roles = 3; /// Roles.
+	map<string, string> identityProperties = 4; /// Identity properties.
+}
+
+/**
+ * The State data type.
+ */
+message State {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	Country country = 2; /// Country.
+	string name = 3; /// Name.
+	string code = 4; /// Code.
+}
+
+/**
+ * The UserDetails data type.
+ */
+message UserDetails {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string username = 2; /// Username.
+	string firstName = 3; /// First name.
+	string lastName = 4; /// Last name.
+	string email = 5; /// Email.
+	AtomiaGrpcBaseTypes.Guid accountId = 6; /// Account id.
+	AtomiaGrpcBaseTypes.Guid parentAccountId = 7; /// Parent account id.
+	string resellerRootDomain = 8; /// Reseller root domain.
+	bool isOwnAccount = 9; /// Is own account.
+	string accountName = 10; /// Account name.
+	string accountState = 11; /// Account state.
+	string displayName = 12; /// Display name.
+	repeated string roles = 13; /// Roles.
+}
+
+/**
+ * The ExecutingMethod data type.
+ */
+message ExecutingMethod {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string name = 2; /// Name.
+	enum ExecutingMethodType {
+		ApiCall = 0; /// Api call.
+		ScheduledTask = 1; /// Scheduled task.
+	}
+	ExecutingMethodType type = 3; /// Type.
+	AtomiaGrpcBaseTypes.UnixTime startDate = 4; /// Start date.
+}
+
+/**
+ * The StrRepeatedExecutingMethodDict data type.
+ */
+message StrRepeatedExecutingMethodDict {
+	string key = 1; /// Key.
+	repeated ExecutingMethod values = 2; /// Values.
+}
+
+/**
+ * The VersionInfo data type.
+ */
+message VersionInfo {
+	string assemblyName = 1; /// Assembly name.
+	string description = 2; /// Description.
+	string version = 3; /// Version.
+}
+
+/**
+ * The StrVersionInfoDict data type.
+ */
+message StrVersionInfoDict {
+	string key = 1; /// Key.
+	VersionInfo value = 2; /// Value.
+}
+
+/**
+ * The SearchingRestriction data type.
+ */
+message SearchingRestriction {
+	string restriction = 1; /// Restriction.
+	string value = 2; /// Value.
+	repeated string values = 3; /// Values.
+	AtomiaGrpcBaseTypes.UnixTime dateValue = 4; /// Date value.
+	repeated AtomiaGrpcBaseTypes.UnixTime dateValues = 5; /// Date values.
+	string operation = 6; /// Operation.
+	string aliasKey = 7; /// Alias key.
+	string aliasValue = 8; /// Alias value.
+}
+
+/**
+ * The StrSearchingRestrictionDict data type.
+ */
+message StrSearchingRestrictionDict {
+	string key = 1; /// Key.
+	SearchingRestriction value = 2; /// Value.
+}
