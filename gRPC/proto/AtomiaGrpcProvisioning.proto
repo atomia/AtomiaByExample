@@ -1,0 +1,185 @@
+﻿syntax = "proto3";
+package AtomiaGrpcProvisioning;
+option csharp_namespace = "Atomia.Grpc.Provisioning";
+import "AtomiaGrpcBaseTypes.proto";
+
+/**
+ * The ProvisioningService data type.
+ */
+message ProvisioningService {
+	string friendlyName = 1; /// Friendly name.
+	string logicalId = 2; /// Logical id.
+	string physicalId = 3; /// Physical id.
+	string packageId = 4; /// Package id.
+	string name = 5; /// Name.
+	repeated ProvisioningServiceProperty properties = 6; /// Properties.
+	string provisioningDescription = 7; /// Provisioning description.
+	bool disabled = 8; /// Disabled.
+	/**
+	 * The StatusType data type.
+	 */
+	enum StatusType {
+		Ok = 0; /// Ok.
+		Dirty = 1; /// Dirty.
+		Deleted = 2; /// Deleted.
+		Unknown = 3; /// Unknown.
+	}
+	StatusType status = 9; /// Status.
+}
+
+/**
+ * The ProvisioningPackage data type.
+ */
+message ProvisioningPackage {
+	string name = 1; /// Name.
+	repeated ProvisioningPackageExtension provisioningPackageExtensions = 2; /// Provisioning package extensions.
+	string currentRequestId = 3; /// Current request id.
+	string id = 4; /// Id.
+	string disableScriptName = 5; /// Disable script name.
+}
+
+/**
+ * The ProvisioningPackageExtension data type.
+ */
+message ProvisioningPackageExtension {
+	string name = 1; /// Name.
+	string id = 2; /// Id.
+	map<string, int32> limitationsOverrides = 3; /// Limitations overrides.
+}
+
+/**
+ * The ProvisioningServiceProperty data type.
+ */
+message ProvisioningServiceProperty {
+	string name = 1; /// Name.
+	string friendlyName = 2; /// Friendly name.
+	bool isKey = 3; /// Is key.
+	string value = 4; /// Value.
+	string id = 5; /// Id.
+	string valueConstrains = 6; /// Value constrains.
+	string propertyType = 7; /// Property type.
+	string description = 8; /// Description.
+	AtomiaGrpcBaseTypes.UnixTime lastChangeTime = 9; /// Last change time.
+}
+
+/**
+ * The ResourceRequestDescription method reply.
+ */
+message ResourceRequestDescription {
+	map<string, string> requestExtensions = 1; /// Request extensions.
+	string policyName = 2; /// Policy name.
+	string rootSimpleServiceName = 3; /// Root simple service name.
+}
+
+/**
+ * The LimitationByService data type.
+ */
+message LimitationByService {
+	string serviceName = 1; /// Service name.
+	string servicePath = 2; /// Service path.
+	repeated Limitation limitations = 3; /// Limitations.
+}
+
+/**
+ * The Limitation data type.
+ */
+message Limitation {
+	string limitationName = 1; /// Limitation name.
+	int32 maxCount = 2; /// Max count.
+	int32 existingCount = 3; /// Existing count.
+}
+
+/**
+ * The PagingInfo data type.
+ */
+message PagingInfo {
+	int64 pageNumber = 1; /// Page number.
+	int64 pageSize = 2; /// Page size.
+	int64 itemsCount = 3; /// Items count.
+	bool orderAsc = 4; /// Order asc.
+	string orderBy = 5; /// Order by.
+}
+
+/**
+ * The ServiceSearchCriteria data type.
+ */
+message ServiceSearchCriteria {
+	ProvisioningService parentService = 1; /// Parent service.
+	string servicePath = 2; /// Service path.
+	string serviceName = 3; /// Service name.
+}
+
+/**
+ * The DateRange data type.
+ */
+message DateRange {
+	AtomiaGrpcBaseTypes.UnixTime endDate = 1; /// End date.
+}
+
+/**
+ * The LogItem data type.
+ */
+message LogItem {
+	int32 id = 1; /// Id.
+	string accountId = 2; /// Account id.
+	string username = 3; /// Username.
+	string severity = 4; /// Severity.
+	string message = 5; /// Message.
+	AtomiaGrpcBaseTypes.UnixTime timestamp = 6; /// Timestamp.
+	map<string, string> extendedProperties = 7; /// Extended properties.
+	string categories = 8; /// Categories.
+}
+
+/**
+ * The GroupOfServiceToDelete2 data type.
+ */
+message GroupOfServiceToDelete2 {
+	ProvisioningService parentService = 1; /// Parent service.
+	repeated string childNames = 2; /// Child names.
+	int32 numberOfServiceToDelete = 3; /// Number of service to delete.
+	bool deleteGlobal = 4; /// Delete global.
+}
+
+/**
+ * The ProvisioningAccount data type.
+ */
+message ProvisioningAccount {
+	string accountId = 1; /// Account id.
+	bool isActive = 2; /// Is active.
+	string currentRequestId = 3; /// Current request id.
+	string accountDescription = 4; /// Account description.
+	string provisioningDescription = 5; /// Provisioning description.
+	map<string, string> accountProperties = 6; /// Account properties.
+}
+
+/**
+ * The Provisioning method request.
+ */
+message ProvisioningRequest {
+	AtomiaGrpcBaseTypes.Guid id = 1; /// Id.
+	string accountId = 2; /// Account id.
+	string status = 3; /// Status.
+	repeated RequestAction requestActions = 4; /// Request actions.
+	string serializedRequest = 5; /// Serialized request.
+	int32 orderNumber = 6; /// Order number.
+	AtomiaGrpcBaseTypes.UnixTime dateTimeCreated = 7; /// Date time created.
+}
+
+/**
+ * The RequestAction method reply.
+ */
+message RequestAction {
+	ProvisioningService service = 1; /// Service.
+	string actionName = 2; /// Action name.
+	enum ActionStatus {
+		Ok = 0; /// Ok.
+		Failed = 1; /// Failed.
+		Pending = 2; /// Pending.
+		InProgress = 3; /// In progress.
+		FailedUndoDone = 4; /// Failed undo done.
+		FailedUndoFailed = 5; /// Failed undo failed.
+		RollbackInProgress = 6; /// Rollback in progress.
+		Unknown = 7; /// Unknown.
+	}
+	ActionStatus actionStatus = 3; /// Action status.
+}

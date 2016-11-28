@@ -70,6 +70,7 @@
     <Compile Include="AtomiaGrpcBaseTypes.cs" />
     <Compile Include="AtomiaGrpcBilling.cs" />
     <Compile Include="AtomiaGrpcBillingGrpc.cs" />
+    <Compile Include="AtomiaGrpcProvisioning.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

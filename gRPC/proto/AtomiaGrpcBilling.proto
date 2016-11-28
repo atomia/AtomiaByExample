@@ -3,6 +3,7 @@ package AtomiaGrpcBilling;
 option csharp_namespace = "Atomia.Grpc.Billing";
 import "AtomiaGrpcBaseTypes.proto";
 import "AtomiaGrpcAccount.proto";
+import "AtomiaGrpcProvisioning.proto";
 
 // Api methods
 service AtomiaGrpcBilling {
@@ -6785,7 +6786,7 @@ message GetContactsRequest {
  * The GetContacts method reply.
  */
 message GetContactsReply {
-	repeated ProvisioningService provisioningServices = 1; /// List of contacts.
+	repeated AtomiaGrpcProvisioning.ProvisioningService provisioningServices = 1; /// List of contacts.
 }
 
 /**
@@ -9282,43 +9283,6 @@ message ResellerCommissionSummary {
 	AtomiaGrpcBaseTypes.Decimal total = 11; /// Total.
 	int32 count = 12; /// Count.
 	AtomiaGrpcBaseTypes.NullableUnixTime payoutDate = 13; /// Payout date.
-}
-
-/**
- * The ProvisioningService data type.
- */
-message ProvisioningService {
-	string friendlyName = 1; /// Friendly name.
-	string logicalId = 2; /// Logical id.
-	string physicalId = 3; /// Physical id.
-	string packageId = 4; /// Package id.
-	string name = 5; /// Name.
-	repeated ProvisioningServiceProperty properties = 6; /// Properties.
-	string provisioningDescription = 7; /// Provisioning description.
-	bool disabled = 8; /// Disabled.
-	/**
-	 * The StatusType data type.
-	 */
-	enum StatusType {
-		Ok = 0; /// Ok.
-		Dirty = 1; /// Dirty.
-		Deleted = 2; /// Deleted.
-		Unknown = 3; /// Unknown.
-	}
-	StatusType status = 9; /// Status.
-}
-
-/**
- * The ProvisioningServiceProperty data type.
- */
-message ProvisioningServiceProperty {
-	string propStringValue = 1; /// Prop string value.
-	string name = 2; /// Name.
-	bool isKey = 3; /// Is key.
-	string id = 4; /// Id.
-	string propertyType = 5; /// Property type.
-	string description = 6; /// Description.
-	AtomiaGrpcBaseTypes.UnixTime lastChangeTime = 7; /// Last change time.
 }
 
 /**
