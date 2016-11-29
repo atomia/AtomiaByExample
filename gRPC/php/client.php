@@ -3,6 +3,7 @@ require dirname(__FILE__).'/vendor/autoload.php';
 require dirname(__FILE__).'/AtomiaGrpcBaseTypes.php';
 require dirname(__FILE__).'/AtomiaGrpcAccount.php';
 require dirname(__FILE__).'/AtomiaGrpcBilling.php';
+require dirname(__FILE__).'/AtomiaGrpcProvisioning.php';
 
 // Store the token inside this global
 $token = null;

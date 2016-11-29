@@ -24,12 +24,14 @@ composer.phar
 AtomiaGrpcAccount.php
 AtomiaGrpcBilling.php
 AtomiaGrpcBaseTypes.php
+AtomiaGrpcProvisioning.php
 node_modules/
 *.pyc
 packages/
 gRPC/csharp/Client/Client/bin
 gRPC/csharp/Client/Client/obj
 .vs
+AtomiaGrpcProvisioning.cs
 AtomiaGrpcBilling.cs
 AtomiaGrpcBillingGrpc.cs
 AtomiaGrpcBaseTypes.cs
@@ -40,5 +42,6 @@ root.pem
 AtomiaGrpcAccount_pb2.py
 AtomiaGrpcBilling_pb2.py
 AtomiaGrpcBaseTypes_pb2.py
+AtomiaGrpcProvisioning_pb2.py
 *.pyc
 node_modules
