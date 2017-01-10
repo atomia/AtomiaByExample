@@ -45,3 +45,4 @@ AtomiaGrpcBaseTypes_pb2.py
 AtomiaGrpcProvisioning_pb2.py
 *.pyc
 node_modules
+!Atomia.Web.Plugin.Example/References/*.dll

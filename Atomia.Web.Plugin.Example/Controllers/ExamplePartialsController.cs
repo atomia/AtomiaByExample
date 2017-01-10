@@ -16,7 +16,11 @@ namespace Atomia.Web.Plugin.Example.Controllers
         [AtomiaProvisioningAuthorize(Roles = "Administrators", ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.ListServices)]
         public ActionResult Loader()
         {
-            ViewData["ShowExamples"] = PackageLimiter.CheckGlobalAddingPossibilities("Example", RouteData.Values).isPossible;
+            ViewData["ShowExamples"] = true;
+
+            /* Normally you would check whether the Example service can be added. 
+               This depends on having it configured in atomiaServices and the provisioning description. */
+            // ViewData["ShowExamples"] = PackageLimiter.CheckGlobalAddingPossibilities("Example", RouteData.Values).isPossible;
 
             return PartialView();
         }
