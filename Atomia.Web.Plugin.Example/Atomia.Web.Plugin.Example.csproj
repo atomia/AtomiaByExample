@@ -133,7 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="App_Data\Transformation Files\appConfig.Example.config" />
+    <None Include="Transformation Files\HostingControlPanel\App_Data\atomiaServices.Example.config" />
+    <None Include="Transformation Files\HostingControlPanel\App_Data\appConfig.Example.config" />
+    <None Include="Transformation Files\HostingControlPanel\bin\Atomia.Web.Plugin.HCP.Provisioning.dll.Example.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
