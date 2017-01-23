@@ -174,12 +174,12 @@ namespace Atomia.Web.Plugin.Example.Controllers
         }
 
         [AtomiaProvisioningAuthorize(Roles = "Administrators", ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.DeleteServices)]
-        public ActionResult Delete(string adSearchQuery)
+        public ActionResult Delete(string serviceID)
         {
             var result = new Dictionary<string, string>();
             var example = new ExampleModel()
             {
-                LogicalID = adSearchQuery
+                LogicalID = serviceID
             };
             
             try
