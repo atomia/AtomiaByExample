@@ -16,7 +16,7 @@
 
     <!-- Data table actions bar -->
     <div class="dt-Actions dt-Actions--filter js-bulk-actions" data-bind="moveFilter">
-        <a class="Btn Btn--primary Icon Icon--plus u-right" href="<%= exampleAdd %>" data-bind="visible"><%= Html.Resource("Add") %></a>
+        <a class="Btn Btn--primary Icon Icon--plus u-right" href="<%= exampleAdd %>"><%= Html.Resource("Add") %></a>
     </div>
 
 
@@ -25,8 +25,8 @@
         <thead>
             <tr>
                 <th></th>
-                <th data-priority="2"><%= Html.Resource("Status") %></th>
                 <th data-priority="1"><%= Html.Resource("Name") %></th>
+                <th data-priority="2"><%= Html.Resource("Status") %></th>
                 <th data-priority="3" data-class-name="u-nowrap u-right-text"><%= Html.Resource("Actions") %></th>
             </tr>
         </thead>
@@ -37,17 +37,17 @@
     <!-- Data table cell templates -->
     <script type="text/html" id="js-status-cell">
         <!-- ko if: $data === 'OK' -->
-            <span class="Icon Icon--checked">
+            <span class="Icon Icon--checked Icon--green">
                 <span class="Icon-label"><%= Html.Resource("OK") %></span>
             </span>
         <!-- /ko -->
         <!-- ko if: $data === 'PROCESSING' -->
-            <span class="Icon Icon--loading">
+            <span class="Icon Icon--loading Icon--blue">
                 <span class="Icon-label"><%= Html.Resource("Processing") %></span>
             </span>
         <!-- /ko -->
         <!-- ko if: $data === 'UNKNOWN' -->
-            <span class="Icon Icon--warning">
+            <span class="Icon Icon--warning Icon--yellow">
                 <span class="Icon-label"><%= Html.Resource("Unknown") %></span>
             </span>
         <!-- /ko -->

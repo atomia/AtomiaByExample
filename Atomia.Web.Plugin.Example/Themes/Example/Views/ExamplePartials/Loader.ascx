@@ -17,14 +17,3 @@
         </p>
     </div>
 <% } %>
-
-
-<%--
-    To render this partial as its own section on the dashboard, include something like this in Dashboard\Index.aspx
-    
-    <div class="u-margin-top u-flexbox-container">
-		<% Html.RenderHcpPartial("Loader", "Example"); %>
-	</div>
-
-    You can of course also include it in one of the existing sections of the dashboard.
---%>

@@ -24,10 +24,19 @@ namespace Atomia.Web.Plugin.Example.Controllers
     [AccountValidation(Order = 5, Roles = "Administrators")]
     public class ExampleController : MainController
     {
+        //private ExampleManager exampleManager;
+        private ExampleDevManager exampleManager;
+
+        public ExampleController()
+        {
+            //exampleManager = new ExampleManager(this);
+            exampleManager = new ExampleDevManager(this);
+        }
+
         [AtomiaProvisioningAuthorize(Roles = "Administrators", ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.ListServices)]
         public ActionResult Index()
         {
-            if (!PackageLimiter.CheckGlobalAddingPossibilities("Example", RouteData.Values).isPossible)
+            if (!exampleManager.CanAddExampleServices())
             {
                 throw new HttpException(401, String.Empty);
             }
@@ -43,7 +52,6 @@ namespace Atomia.Web.Plugin.Example.Controllers
         public ActionResult Search(string sSearch, string iDisplayStart, string iDisplayLength, string sEcho, string iSortCol_0, string sSortDir_0)
         {
             long total;
-            var exampleManager = new ExampleManager(this);
             var examples = exampleManager.FetchObjectsWithPaging(sSearch, iDisplayStart, iDisplayLength, Convert.ToInt32(iSortCol_0), sSortDir_0, out total);
             
             ViewData["canAdd"] = CheckCanAdd();
@@ -100,7 +108,6 @@ namespace Atomia.Web.Plugin.Example.Controllers
         {
             try
             {
-                var exampleManager = new ExampleManager(this);
                 exampleManager.AddExample(example);
             }
             catch (AtomiaServerSideValidationException ex)
@@ -130,7 +137,6 @@ namespace Atomia.Web.Plugin.Example.Controllers
             try
             {
                 var serviceId = this.RouteData.Values["serviceID"].ToString();
-                var exampleManager = new ExampleManager(this);
                 var example = exampleManager.FetchExample(serviceId);
 
                 return View(example);   
@@ -149,7 +155,6 @@ namespace Atomia.Web.Plugin.Example.Controllers
         {
             try
             {
-                var exampleManager = new ExampleManager(this);
                 exampleManager.EditExample(example);
                 return RedirectToAction("Index", new { controller = "Example" });
             }
@@ -174,6 +179,7 @@ namespace Atomia.Web.Plugin.Example.Controllers
         }
 
         [AtomiaProvisioningAuthorize(Roles = "Administrators", ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.DeleteServices)]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Delete(string serviceID)
         {
             var result = new Dictionary<string, string>();
@@ -184,7 +190,6 @@ namespace Atomia.Web.Plugin.Example.Controllers
             
             try
             {
-                var exampleManager = new ExampleManager(this);
                 exampleManager.DeleteExample(example);
             }
             catch (AtomiaServerSideValidationException ex)
@@ -199,7 +204,7 @@ namespace Atomia.Web.Plugin.Example.Controllers
                 result.Add("succeeded", "true");
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(result);
         }
 
         private bool CheckCanEdit()

@@ -127,6 +127,7 @@
     <Compile Include="Controllers\ExamplePartialsController.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Extensions\PartialsProvider.cs" />
+    <Compile Include="Managers\ExampleDevManager.cs" />
     <Compile Include="Managers\ExampleManager.cs" />
     <Compile Include="Models\ExampleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +158,12 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="README.txt" />
+    <Content Include="Themes\Example\Views\Dashboard\Dashboard\_IndexScriptsCustom.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Themes\Example\Views\Domains\Websites\_IndexScriptsCustom.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Themes\Example\Views\ExamplePartials\Loader.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -169,8 +176,18 @@
     <Content Include="Themes\Example\Views\Example\Index.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Themes\Example\Views\Example\_AddScripts.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Themes\Example\Views\Example\_EditScripts.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Themes\Example\Views\Example\_IndexScripts.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\Example\ExampleMenuRender.resx" />
     <EmbeddedResource Include="Themes\Example\Views\ExamplePartials\App_LocalResources\Loader.ascx.resx" />
     <EmbeddedResource Include="Themes\Example\Views\Example\App_LocalResources\Add.aspx.resx" />
     <EmbeddedResource Include="Themes\Example\Views\Example\App_LocalResources\Edit.aspx.resx" />

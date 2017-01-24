@@ -1,4 +1,4 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Atomia.Web.Plugin.Example.Models.ExampleModel>" %>
 
 <script type="text/javascript">
     var Atomia = Atomia || {};

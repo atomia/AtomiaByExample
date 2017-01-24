@@ -23,23 +23,27 @@
             // see Search action in ExampleController for data
             self.columns = [
                 {},
-                { // Status
-                    orderData: [0],
-                    searchable: false,
-                    render: self.renderRow(0)
-                },
                 { // Name
                     orderData: [1],
                     render: self.renderRow(1)
+                },
+                { // Status
+                    orderData: [0],
+                    searchable: false,
+                    render: function (data, type, row) {
+                        var statusData = row[0];
+
+                        return Atomia.Shared.renderKoTemplate('js-status-cell', statusData);
+                    }
                 },
                 { // Actions
                     searchable: false,
                     sortable: false,
                     render: function (data, type, row) {
                         var actionsData = JSON.parse(row[2]);
-                        var editUrl = URLS.exampleEdit.replace('_serviceID_', actionsData.logicalId);
+                        var editUrl = URLS.exampleEdit.replace('_serviceID_', actionsData.logicalID);
 
-                        return renderKoTemplate('js-actions-cell', {
+                        return Atomia.Shared.renderKoTemplate('js-actions-cell', {
                             canDelete: actionsData.canDelete,
                             canEdit: actionsData.canEdit,
                             editUrl: editUrl
@@ -55,7 +59,7 @@
 
                 ko.postbox.publish('uiInitDeleteExample', {
                     name: rowData[1],
-                    logicalId: actionsData.logicalId    
+                    logicalId: actionsData.logicalID
                 });
             };
 
@@ -82,23 +86,24 @@
 
         // View model for confirming delete of example service.
         function DeleteExampleDialog() {
+            var self = this;
             $.extend(self, new Atomia.Shared.DialogMixin());
 
             self.logicalId = ko.observable();
             self.name = ko.observable();
 
-            ko.postbox.subscribe('uiInitCertAction', function (data) {
-                requireProperties(data, 'logicalId', 'name');
-
+            ko.postbox.subscribe('uiInitDeleteExample', function (data) {
                 self.logicalId(data.logicalId);
                 self.name(data.name);
+
+                self.dialogIsOpen(true);
             });
 
             self.doDelete = function () {
                 var action = URLS.exampleDelete.replace('_serviceID_', self.logicalId());
 
                 $.post(action, function (data) {
-                    if (data && data.success === 'TRUE') {
+                    if (data && data.succeeded === 'true') {
                         ko.postbox.publish('dataDeletedExample');
                     } else if (data && data.error) {
                         notify.error(data.error);

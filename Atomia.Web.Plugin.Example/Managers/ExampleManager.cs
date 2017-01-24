@@ -207,6 +207,11 @@ namespace Atomia.Web.Plugin.Example.Managers
             return PluginSettingsFetcher.FetchSetting(pluginParameterName, Assembly.GetExecutingAssembly().CodeBase);
         }
 
+        public bool CanAddExampleServices()
+        {
+            return PackageLimiter.CheckGlobalAddingPossibilities("Example", controller.RouteData.Values).isPossible;
+        }
+
         private void Validate(ExampleModel example)
         {
             var errors = DataAnnotationsValidationRunner.GetErrors(example);
