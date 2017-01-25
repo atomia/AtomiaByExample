@@ -8,6 +8,7 @@ Installation
 * Copy the Themes/Example folder to HostingControlPanel/Themes in your vagrant environment
 * Copy the App_GlobalResources/Example folder to HostingControlPanel/App_GlobalResources in your vagrant environment
 * Copy "Transformation Files" from the project to the corresponding places in HostingControlPanel in your vagrant environment
+* Copy Theme/NewDefault/Content from NewDefault theme to Theme/Example to get a stylesheet
 * Run "Recreate config files" in HostingControlPanel in your vagrant environment.
 * Open hcp.dev.atomia.com in your browser and the new plugin should be there.
 
