@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provisioningDescription xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <servicesDescription>
+        <simpleServiceList>
+			<simpleService 
+				name="AmazonECSContainerService" friendlyName="Simple service for creating and managing a container on ECS" 
+				providingModule="Atomia.Provisioning.Modules.SSHCommand.SSHCommand" xdt:Transform="Insert">
+				<propertyList>
+					<property name="ContainerName" friendlyName="The service name to create in ECS" required="true" />
+					<property name="Hostname" friendlyName="The hostname to connect to the container through an ELB rule" required="true" />
+					<property name="Type" friendlyName="The container type" required="true" />
+				</propertyList>
+			</simpleService>
+		</simpleServiceList>
+		<complexServiceList>
+			<complexService name="CsAmazonECSContainerService"
+				description="Complex service for an ECS container and DNS through Atomia DNS" xdt:Transform="Insert">
+				<complexServicePropertyList>
+					<complexServiceProperty name="ContainerName" description="Container name" />
+					<complexServiceProperty name="Hostname" description="The hostname to connect to the container through an ELB rule" />
+					<complexServiceProperty name="Type" friendlyName="The container type" defaultValue="wordpress" />
+				</complexServicePropertyList>
+				<partList>
+					<partService name="AmazonECSContainerService" min="1" max="1">
+						<propertyTransformation>
+							<simpleTransformer>
+								<serviceProperty name="ContainerName">
+									<expression>#Account()+-+$CsAmazonECSContainerService::ContainerName</expression>
+								</serviceProperty>
+								<serviceProperty name="Hostname">
+									<expression>$CsAmazonECSContainerService::Hostname</expression>
+								</serviceProperty>
+								<serviceProperty name="Type">
+									<expression>$CsAmazonECSContainerService::Type</expression>
+								</serviceProperty>
+							</simpleTransformer>
+						</propertyTransformation>
+					</partService>
+					<partService name="DnsZone" />
+				</partList>
+				<init>
+					<add partName="AmazonECSContainerService" instanceName="AmazonECSContainerServiceInstance" />
+					<add partName="DnsZone">
+						<initPropertyList>
+						  <propertyTransformation>
+							<simpleTransformer>
+							  <serviceProperty name="Zonename">
+								<expression>$CsAmazonECSContainerService::Hostname</expression>
+							  </serviceProperty>
+							</simpleTransformer>
+						  </propertyTransformation>
+						</initPropertyList>
+						<add partName="DnsZoneRecord">
+						  <initPropertyList>
+							<initProperty name="Id" value="" />
+							<initProperty name="DnsType" value="CNAME" />
+							<initProperty name="Label" value="www" />
+							<propertyTransformation>
+							  <simpleTransformer>
+								<serviceProperty name="Data">
+								  <expression>#Instance(AmazonECSContainerServiceInstance).Resource.LoadbalancerCNAME</expression>
+								</serviceProperty>
+							  </simpleTransformer>
+							</propertyTransformation>
+						  </initPropertyList>
+						</add>
+					</add>
+				</init>
+			</complexService>
+		</complexServiceList>
+   </servicesDescription>
+   <packageDescription>
+		<packageList>
+			<package name="BasePackage" xdt:Locator="Match(name)">
+				<serviceList>
+					<service name="CsAmazonECSContainerService" xdt:Transform="Insert" />
+				</serviceList>
+			</package>
+		</packageList>
+   </packageDescription>
+</provisioningDescription>
