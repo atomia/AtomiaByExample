@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resourceDescription xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <bindings xdt:Transform="Insert">
+        <moduleList>
+            <module name="Atomia.Provisioning.Modules.Example.Example" resourceAsignmentPolicy="RoundRobin" />
+        </moduleList>
+        <resourceList>
+            <resource name="Example">
+                <property name="Test">Test</property>
+            </resource>
+        </resourceList>
+    </bindings>
+</resourceDescription>

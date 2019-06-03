@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resourceDescription>
+  <bindings>
+    <moduleList>
+      <module name="Atomia.Provisioning.Modules.Example.Example" resourceAsignmentPolicy="RoundRobin" />
+    </moduleList>
+    <resourceList>
+      <resource name="Example">
+        <property name="Test">Test</property>
+      </resource>
+    </resourceList>
+  </bindings>
+</resourceDescription>

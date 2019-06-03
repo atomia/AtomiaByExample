@@ -1,0 +1,19 @@
+﻿<provisioningDescription>
+  <servicesDescription>
+    <simpleServiceList>
+      <simpleService name="Example" friendlyName="Example of the simple service"  providingModule="Atomia.Provisioning.Modules.Example.Example">
+        <propertyList>
+          <property name="AccountId" friendlyName="Account owner ID" />
+          <property name="FirstName" friendlyName="Account owner first name" />
+          <property name="LastName" friendlyName="Account owner last name" />
+        </propertyList>
+        <operationList>
+          <operation name="GetFirstName" />
+          <operation name="GetFullName" />
+          <operation name="Increment" />
+          <operation name="Decrement" />
+        </operationList>
+      </simpleService>
+    </simpleServiceList>>
+  </servicesDescription>
+</provisioningDescription>
