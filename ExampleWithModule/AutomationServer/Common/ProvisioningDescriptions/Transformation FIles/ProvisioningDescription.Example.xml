@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<provisioningDescription xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <servicesDescription>
+        <simpleServiceList>
+            <simpleService name="Example" friendlyName="Example of the simple service" providingModule="Atomia.Provisioning.Modules.Example.Example" xdt:Transform="Insert">
+                <propertyList>
+                    <property name="AccountId" friendlyName="Account owner ID" />
+                    <property name="FirstName" friendlyName="Account owner first name" />
+                    <property name="LastName" friendlyName="Account owner last name" />
+                </propertyList>
+                <operationList>
+                    <operation name="GetFirstName" />
+                    <operation name="GetFullName" />
+                    <operation name="Increment" />
+                    <operation name="Decrement" />
+                </operationList>
+            </simpleService>
+        </simpleServiceList>
+        <complexServiceList>
+            <complexService name="CsBase" xdt:Locator="Match(name)">
+                <partList>
+                    <partService name="Example" min="0" max="2" xdt:Transform="Insert">
+                        <propertyTransformation>
+                            <simpleTransformer>
+                                <serviceProperty name="AccountId">
+                                    <expression>$CsBase::PackageNumber+#Account()</expression>
+                                </serviceProperty>
+                                <serviceProperty name="FirstName">
+                                    <expression>$CsBase::PackageNumber+#Account()</expression>
+                                </serviceProperty>
+                                <serviceProperty name="LastName">
+                                    <expression>$CsBase::PackageNumber+#Account()</expression>
+                                </serviceProperty>
+                            </simpleTransformer>
+                        </propertyTransformation>
+                    </partService>
+                </partList>
+            </complexService>
+        </complexServiceList>
+    </servicesDescription>
+    <packageDescription>
+        <packageList>
+            <package name="BasePackage" xdt:Locator="Match(name)">
+                <serviceLimitationList>
+                    <globalLimitation>
+                        <group maxCount="2" xdt:Transform="Insert">
+                            <service name="Example" />
+                        </group>
+                    </globalLimitation>
+                </serviceLimitationList>
+            </package>
+        </packageList>
+    </packageDescription>
+</provisioningDescription>
