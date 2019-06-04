@@ -38,4 +38,17 @@
             </complexService>
         </complexServiceList>
     </servicesDescription>
+    <packageDescription>
+        <packageList>
+            <package name="BasePackage" xdt:Locator="Match(name)">
+                <serviceLimitationList>
+                    <globalLimitation>
+                        <group maxCount="2" xdt:Transform="Insert">
+                            <service name="Example" />
+                        </group>
+                    </globalLimitation>
+                </serviceLimitationList>
+            </package>
+        </packageList>
+    </packageDescription>
 </provisioningDescription>

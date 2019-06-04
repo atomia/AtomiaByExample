@@ -6,7 +6,7 @@
         </moduleList>
         <resourceList>
             <resource name="Example">
-                <property name="Test">Test</property>
+                <property name="Test">Atomia</property>
             </resource>
         </resourceList>
     </bindings>
