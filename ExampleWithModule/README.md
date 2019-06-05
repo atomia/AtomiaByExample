@@ -11,12 +11,12 @@ We do this by provisioning Example module through Automation Server Client.
 
 ## The Example module
 
-The Exampel module allows you to define an arbitrary simple service and then
+The Example module allows you to define an arbitrary simple service and then
 calling the Increment, Decrement, GetFullName and GetFirstName operations via automation server core api.
 
 ## The customization process
 
-The process of creating the customization will be a few different steps that we'll describe
+The process of creating the customization will have a few different steps that we'll describe
 separately:
 
 1. Creating and testing the provisioning scripts
