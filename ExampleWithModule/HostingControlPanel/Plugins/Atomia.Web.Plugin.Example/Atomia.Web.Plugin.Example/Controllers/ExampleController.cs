@@ -6,6 +6,7 @@ using Atomia.Web.Plugin.HCP.Provisioning;
 using Atomia.Web.Plugin.HCP.Provisioning.ActionFilterAttributes;
 using Atomia.Web.Plugin.HCP.Provisioning.Controllers;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace Atomia.Web.Plugin.Example.Controllers
 {
@@ -18,8 +19,10 @@ namespace Atomia.Web.Plugin.Example.Controllers
         [AcceptVerbs(System.Net.WebRequestMethods.Http.Get, System.Net.WebRequestMethods.Http.Post)]
         public ActionResult Index()
         {
-            var name = ExampleHelper.CallOperation(RouteData, "GetFirstName", "");
-            ViewData["FirstName"] = name ?? "No name";
+            var service = ExampleHelper.GetServiceModel(RouteData);
+
+            ViewData["FirstName"] = service.FirstName ?? "No name";
+            ViewData["Number"] = service.Number ?? "0";
 
             return View();
         }

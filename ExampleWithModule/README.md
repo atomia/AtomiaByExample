@@ -9,6 +9,26 @@ other built in provisioning modules to do more complex tasks.
 
 We do this by provisioning Example module through Automation Server Client.
 
+## Installation instructions
+
+Example needs to be installed on default Atomia in order to be tested. Here are the installation steps:
+
+1. build project "Atomia.Web.Plugin.Example" located in 
+`ExampleWithModule/HostingControlPanel/Plugins/Atomia.Web.Plugin.Example` 
+and copy binary to `C:\Program Files (x86)\Atomia\HostingControlPanel\bin` in your vagrant environment 
+1. copy `ExampleWithModule/HostingControlPanel/Frame/Themes/NewDefault` to `C:\Program Files (x86)\Atomia\HostingControlPanel\Themes\NewDefault` in your vagrant environment. 
+1. copy transformation files from the folder `ExampleWithModule/HostingControlPanel/Frame/App_Data` to `C:\Program Files (x86)\Atomia\HostingControlPanel\App_Data\Transformation Files` in your vagrant environment 
+1. execute `C:\Program Files (x86)\Atomia\HostingControlPanel\Recreate config files` shortcut 
+1. build project "build project "Atomia.Web.Plugin.Example" located in `ExampleWithModule/AutomationServer/Common/Modules/Atomia.Provisioning.Modules.Example` 
+and copy binary to `C:\Program Files (x86)\Atomia\AutomationServer\Common\Modules` in your vagrant environment. 
+    
+    **NOTE:** If `Atomia.Provisioning.Modules.Example.dll` already exists on your vagrant, you will not be able to override it until you first stop the following Atomia windows services: AtomiaAutomationServerCleanUpService, AtomiaAutomationServerPeriodicUpdater, AtomiaAutomationServerProvisioningEngine. And you need to stop Automation server website (automationserver.dev.atomia.com) in the IIS Manager. Don't forget to start them all again when you finish the copy.
+1. copy transformation files from the folder `ExampleWithModule/AutomationServer/Common/ProvisioningDescriptions/Transformation FIles` to `C:\Program Files (x86)\Atomia\AutomationServer\Common\ProvisioningDescriptions\Transformation Files` in your vagrant environment
+1. copy transformation files from the folder `ExampleWithModule/AutomationServer/Common/Transformation FIles` to `C:\Program Files (x86)\Atomia\AutomationServer\Common\Transformation Files` in your vagrant environment
+1. execute `C:\Program Files (x86)\Atomia\AutomationServer\Recreate config files` shortcut 
+
+Once all the above is done, a cusotmer needs tobe prepared in order to open the new HCP page. Check instructions in the section "Testing the customization" below.
+
 ## The Example module
 
 The Example module allows you to define an arbitrary simple service and then
@@ -24,8 +44,6 @@ separately:
 3. Configuring the Automation Server Resource Description
 
 ### Build and testing the HCP plugin
-
-To use the Example module you need to build project Atomia.Web.Plugin.Example located in ExampleWithModule/HostingControlPanel/Plugins/Atomia.Web.Plugin.Example and copy binary to HostingControlPanel/bin in your vagrant environment. Next step is to copy Frame/Themes/NewDefault to HostingControlPanel/Themes in your vagrant environment. Then copy "Transformation Files" from the folder Frame to the corresponding places in HostingControlPanel in your vagrant environment and then use the "Recreate config files" shortcut.
 
 #### Increment
 
@@ -78,14 +96,14 @@ Our simple service is now up and running, but without beeing permitted as a chil
 not yet possible to provision them.
 
 To make this possible we choose to add:
+```
     <group maxCount="2">
         <service name="Example" />
     </group>
-to the <globalLimitaitons>
-to the <serviceLimitationList> of the <package> with name="BasePackage".
+```
+to the `<globalLimitaitons><serviceLimitationList>` section of the `<package>` provisioning description that has `name="BasePackage"`
 
-In a real world scenario the service could be sold as extra services within a package, sold as a package allowing a limited number of services to
-be provisioned, sold usage based, etc.
+In a real world scenario the service could be sold as extra services within a package, sold as a package allowing a limited number of services to be provisioned, sold usage based, etc.
 
 ### Configuring the Automation Server Resource Description
 
@@ -93,7 +111,7 @@ In Atomia every simple service needs to have a matching resource definition conf
 
 For our service Example, it's not relavante to use resource properties, but we should have it for provisioning service.
 
-The resource description will look like:
+The resource description looks like:
 ```
   <bindings>
     <moduleList>
@@ -106,27 +124,15 @@ The resource description will look like:
     </resourceList>
   </bindings>
 ```
+and is also added via tranformation file.
 
-Also, you can do this configuration resource description via Tranformation files which can be found in [transformations](transformations) folder.
-
-To use it you download it and put it in the
-    C:\Program Files (x86)\Atomia\AutomationServer\Common\Transformation Files
-
-folder, and then use the "Recreate config files" shortcut.
-
+The properties in the resource file usually hold some API url and API username and password that you will need in order to provision the actual service on some resource (mail server, web server and so on).
 
 ### Creating a transformation file
 
 The supported way of changing the provisioning description and other configuration in Atomia is through a transformation file.
 
 You can find more information about transformation files at http://learn.atomia.com/knowledge%20base/using-transformation-files/
-
-A transformation file for our provisioning description changes can be found in the [transformations](transformations) folder.
-
-To use it you download it and put it in the
-    C:\Program Files (x86)\Atomia\AutomationServer\Common\ProvisioningDescriptions\Transformation Files
-
-folder, and then use the "Recreate config files" shortcut.
 
 ## Testing the customization
 
@@ -139,4 +145,4 @@ Once open you should right click and select "Add Child Service" and then select 
 
 You will then be able to specify the parameters and add the service.
 
-The end result (first name) in HCP (hcp.dev.atomia.com/accountNumber/Example) should be identical to when you added service in to Automation Server Client.
+The end result (first name) in HCP (hcp.dev.atomia.com/{NNNNNN}/Example - replace `NNNNNN` with account number) should be identical to when you added service in to Automation Server Client.
