@@ -6,6 +6,7 @@
           <property name="AccountId" friendlyName="Account owner ID" />
           <property name="FirstName" friendlyName="Account owner first name" />
           <property name="LastName" friendlyName="Account owner last name" />
+          <property name="Number" friendlyName="Number we are going to modify with Increment and Decrement operation" />
         </propertyList>
         <operationList>
           <operation name="GetFirstName" />

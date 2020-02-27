@@ -53,6 +53,28 @@ namespace Atomia.Web.Plugin.Example.Helpers
             return simpleService;
         }
 
+        public static Models.ExampleModel GetServiceModel(RouteData routeData, string serviceName = "Example Simple Service")
+        {
+            var simpleService = GetService(routeData);
+
+            var accountId = routeData.Values["accountId"].ToString();
+            var fetchedProvisioningDescriptionID = AtomiaServicesManager.FetchProvisioningDescriptionID(accountId);
+            var serviceData = AtomiaServicesManager.FetchServiceData(
+                                serviceName,
+                                fetchedProvisioningDescriptionID,
+                                routeData.DataTokens["area"].ToString(),
+                                routeData.Values["controller"].ToString(),
+                                routeData.Values["action"].ToString());
+
+            return new Models.ExampleModel
+            {
+                AccountId = simpleService.properties.FirstOrDefault(p => p.Name == serviceData.ServiceProperties["AccountId"]).propStringValue,
+                FirstName = simpleService.properties.FirstOrDefault(p => p.Name == serviceData.ServiceProperties["FirstName"]).propStringValue,
+                LastName = simpleService.properties.FirstOrDefault(p => p.Name == serviceData.ServiceProperties["LastName"]).propStringValue,
+                Number = simpleService.properties.FirstOrDefault(p => p.Name == serviceData.ServiceProperties["Number"]).propStringValue
+            };
+        }
+
         private static ProvisioningService[] SearchServices(
             ICoreApi coreApi,
             ProvisioningService parentService,

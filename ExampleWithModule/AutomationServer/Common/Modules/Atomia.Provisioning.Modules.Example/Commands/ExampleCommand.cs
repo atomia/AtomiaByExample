@@ -19,10 +19,15 @@ namespace Atomia.Provisioning.Modules.Example.Commands
 
         protected override void ExecuteAdd(ModuleService moduleService)
         {
+            // Here is the place where you can call third party API to add (provision) some servis
+            // Usually the result of provisioning is some ID that can be saved in the Atomia service property
+            // in this case we will just randomly create some integer and save it in the "Number" property 
+            moduleService["Number"] = (new Random()).Next(0, 10).ToString();
         }
 
         protected override void ExecuteRemove(ModuleService moduleService)
         {
+            // Here is the place where you can call third party API to remove (deprovision) servis
         }
 
         protected override void ValidateService(ModuleService moduleService)
@@ -38,9 +43,15 @@ namespace Atomia.Provisioning.Modules.Example.Commands
                 case "GetFullName":
                     return $"{FirstName} {LastName}";
                 case "Increment":
-                    return (++Value).ToString();
+                    int x = 0;
+                    Int32.TryParse(service["Number"], out x);
+                    service["Number"] = (++x).ToString();
+                    return service["Number"];
                 case "Decrement":
-                    return (--Value).ToString();
+                    int y = 0;
+                    Int32.TryParse(service["Number"], out y);
+                    service["Number"] = (--y).ToString();
+                    return service["Number"];
                 default:
                     throw new Exception($"Invalid operation name {operationName}");
             }

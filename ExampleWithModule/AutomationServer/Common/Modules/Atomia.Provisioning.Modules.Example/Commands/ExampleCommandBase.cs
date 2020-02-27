@@ -10,7 +10,6 @@ namespace Atomia.Provisioning.Modules.Example.Commands
         public string AccountId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public static int Value { get; set; }
 
         public ExampleCommandBase(
             ModuleService service,

@@ -8,13 +8,14 @@
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
     <%
         var firstName = ViewData["FirstName"];
+        var Number = ViewData["Number"];
     %>
     <h3>Hello <%= firstName %></h3>
     <div>
         <button id='incrementBtn' class="Btn Btn--primary">Increment</button>
         <button id='decrementBtn' class="Btn Btn--secundary">Decrement</button>
         <div class="Message Message--info Message--block">
-            <h2>Current vaulue is: <span id="valuePlaceholder"></span></h2>
+            <h2>Current vaulue is: <span id="valuePlaceholder"><%= Number %></span></h2>
         </div>
     </div>
 </asp:Content>
