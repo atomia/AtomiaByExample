@@ -8,13 +8,13 @@
         var $valuePlaceholder = $('#valuePlaceholder');
 
         $incrementBtn.click(function () {
-            $.post(Atomia.URLS.performIncrement, null,function(res) {
+            $.post(Atomia.URLS.performIncrement, null, function(res) {
                 $valuePlaceholder.text(res);
             });
         });
 
          $decrementBtn.click(function () {
-            $.post(Atomia.URLS.performDecrement, null,function(res) {
+            $.post(Atomia.URLS.performDecrement, null, function(res) {
                 $valuePlaceholder.text(res);
             });
         });

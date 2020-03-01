@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atomia.Provisioning.Modules.Example.Commands
 {
-    public class ExampleCommand : ExampleCommandBase
+    public class ExampleCommand : ModuleCommandSimpleBase
     {
         public ExampleCommand(
             ModuleService service,
@@ -19,15 +19,15 @@ namespace Atomia.Provisioning.Modules.Example.Commands
 
         protected override void ExecuteAdd(ModuleService moduleService)
         {
-            // Here is the place where you can call third party API to add (provision) some servis
+            // Here is the place where you can call third party API to add (provision) some service
             // Usually the result of provisioning is some ID that can be saved in the Atomia service property
-            // in this case we will just randomly create some integer and save it in the "Number" property 
+            // in this example we will just randomly create some integer and save it in the "Number" property 
             moduleService["Number"] = (new Random()).Next(0, 10).ToString();
         }
 
         protected override void ExecuteRemove(ModuleService moduleService)
         {
-            // Here is the place where you can call third party API to remove (deprovision) servis
+            // Here is the place where you can call third party API to remove (deprovision) service
         }
 
         protected override void ValidateService(ModuleService moduleService)
@@ -38,10 +38,6 @@ namespace Atomia.Provisioning.Modules.Example.Commands
         {
             switch (operationName)
             {
-                case "GetFirstName":
-                    return FirstName;
-                case "GetFullName":
-                    return $"{FirstName} {LastName}";
                 case "Increment":
                     int x = 0;
                     Int32.TryParse(service["Number"], out x);

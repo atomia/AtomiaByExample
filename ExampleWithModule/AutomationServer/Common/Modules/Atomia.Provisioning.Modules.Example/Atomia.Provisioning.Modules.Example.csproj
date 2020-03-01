@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ExampleCommand.cs" />
-    <Compile Include="Commands\ExampleCommandBase.cs" />
     <Compile Include="Example.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

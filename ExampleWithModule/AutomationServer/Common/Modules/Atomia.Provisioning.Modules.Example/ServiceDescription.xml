@@ -9,8 +9,6 @@
           <property name="Number" friendlyName="Number we are going to modify with Increment and Decrement operation" />
         </propertyList>
         <operationList>
-          <operation name="GetFirstName" />
-          <operation name="GetFullName" />
           <operation name="Increment" />
           <operation name="Decrement" />
         </operationList>

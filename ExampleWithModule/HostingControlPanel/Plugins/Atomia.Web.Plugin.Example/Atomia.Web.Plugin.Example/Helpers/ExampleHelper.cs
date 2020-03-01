@@ -1,13 +1,9 @@
 ﻿using Atomia.Web.Plugin.HCP.Provisioning;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Routing;
 using Atomia.Web.Plugin.ServiceReferences;
 using Atomia.Web.Plugin.ServiceReferences.CoreAPI;
-using Atomia.Web.Plugin.HCP.Provisioning.Helpers;
 
 namespace Atomia.Web.Plugin.Example.Helpers
 {
@@ -57,6 +53,11 @@ namespace Atomia.Web.Plugin.Example.Helpers
         {
             var simpleService = GetService(routeData);
 
+            if (null == simpleService)
+            {
+                return null;
+            }
+
             var accountId = routeData.Values["accountId"].ToString();
             var fetchedProvisioningDescriptionID = AtomiaServicesManager.FetchProvisioningDescriptionID(accountId);
             var serviceData = AtomiaServicesManager.FetchServiceData(
@@ -73,6 +74,52 @@ namespace Atomia.Web.Plugin.Example.Helpers
                 LastName = simpleService.properties.FirstOrDefault(p => p.Name == serviceData.ServiceProperties["LastName"]).propStringValue,
                 Number = simpleService.properties.FirstOrDefault(p => p.Name == serviceData.ServiceProperties["Number"]).propStringValue
             };
+        }
+
+        public static bool CanAdd(RouteData routeData)
+        {
+            var rootService = GetRootService(routeData);
+
+            return null != rootService;
+        }
+
+        public static ProvisioningService Create(RouteData routeData, string firstName, string lastName, string serviceName = "Example Simple Service")
+        {
+            var coreService = AtomiaServiceChannelManager.GetCoreService(false);
+            var accountId = routeData.Values["accountId"].ToString();
+            var fetchedProvisioningDescriptionID = AtomiaServicesManager.FetchProvisioningDescriptionID(accountId);
+            var serviceData = AtomiaServicesManager.FetchServiceData(
+                                serviceName,
+                                fetchedProvisioningDescriptionID,
+                                routeData.DataTokens["area"].ToString(),
+                                routeData.Values["controller"].ToString(),
+                                routeData.Values["action"].ToString());
+            var baseService = GetRootService(routeData);
+
+            if (null == baseService)
+            {
+                return null;
+            }
+
+            var newService = coreService.CreateService(serviceData.ServiceName, baseService, accountId);
+            newService.properties.Single(p => p.Name == serviceData.ServiceProperties["FirstName"]).propStringValue = firstName;
+            newService.properties.Single(p => p.Name == serviceData.ServiceProperties["LastName"]).propStringValue = lastName;
+
+            return coreService.AddService(newService, baseService, accountId, null);
+        }
+
+        public static void Delete(RouteData routeData)
+        {
+            var coreService = AtomiaServiceChannelManager.GetCoreService(false);
+            var accountId = routeData.Values["accountId"].ToString();
+            var simpleService = GetService(routeData);
+
+            if (null == simpleService)
+            {
+                return;
+            }
+
+            coreService.DeleteService(simpleService, accountId);
         }
 
         private static ProvisioningService[] SearchServices(
@@ -132,7 +179,7 @@ namespace Atomia.Web.Plugin.Example.Helpers
             };
             var fetchedServices = coreService.FindServicesByPath(serviceSearchCriteria, null, routeData.Values["accountID"].ToString(), "", true);
 
-            return PackageSelectHelper.FilterServicesToSelectedPackage(routeData, fetchedServices).FirstOrDefault();
+            return fetchedServices.FirstOrDefault();
         }
     }
 }
