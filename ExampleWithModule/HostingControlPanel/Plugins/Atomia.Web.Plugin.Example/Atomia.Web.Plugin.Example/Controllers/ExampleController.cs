@@ -2,11 +2,10 @@
 using Atomia.Web.Plugin.Example.Helpers;
 using Atomia.Web.Plugin.HCP.Authorization;
 using Atomia.Web.Plugin.HCP.Authorization.ActionFilterAttributes;
-using Atomia.Web.Plugin.HCP.Provisioning;
 using Atomia.Web.Plugin.HCP.Provisioning.ActionFilterAttributes;
 using Atomia.Web.Plugin.HCP.Provisioning.Controllers;
 using System.Web.Mvc;
-using System.Linq;
+using Atomia.Web.Plugin.ServiceReferences;
 
 namespace Atomia.Web.Plugin.Example.Controllers
 {
@@ -21,10 +20,38 @@ namespace Atomia.Web.Plugin.Example.Controllers
         {
             var service = ExampleHelper.GetServiceModel(RouteData);
 
-            ViewData["FirstName"] = service.FirstName ?? "No name";
-            ViewData["Number"] = service.Number ?? "0";
+            ViewData["CanAdd"] = ExampleHelper.CanAdd(RouteData) ? "1" : "0";
+            ViewData["Exists"] = null == service ? "0" : "1";
+
+            if (null != service)
+            {
+                ViewData["FirstName"] = service.FirstName ?? "No name";
+                ViewData["LastName"] = service.LastName ?? "No name";
+                ViewData["Number"] = service.Number ?? "0";
+            }
 
             return View();
+        }
+
+        [AtomiaProvisioningAuthorize(ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.ServicesWrite)]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create()
+        {
+            var atomiaAccountApiClient = AtomiaServiceChannelManager.GetAccountService();
+            var account = atomiaAccountApiClient.GetAccountByName(RouteData.Values["accountId"].ToString());
+
+            ExampleHelper.Create(RouteData, account.FirstName, account.LastName);
+
+            return RedirectToAction("Index", new { area = "Example", controller = "Example" });
+        }
+
+        [AtomiaProvisioningAuthorize(ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.ServicesWrite)]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete()
+        {
+            ExampleHelper.Delete(RouteData);
+
+            return RedirectToAction("Index", new { area = "Example", controller = "Example" });
         }
 
         [AtomiaProvisioningAuthorize(ModuleName = "Provisioning", ObjectTypes = "http://schemas.atomia.com/atomia/2009/04/provisioning/claims/account/{account_id}", Operation = AuthorizationConstants.ServicesWrite)]

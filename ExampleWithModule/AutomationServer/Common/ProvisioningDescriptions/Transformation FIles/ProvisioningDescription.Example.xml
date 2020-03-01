@@ -10,8 +10,6 @@
                     <property name="Number" friendlyName="Number we are going to modify with Increment and Decrement operation" />
                 </propertyList>
                 <operationList>
-                    <operation name="GetFirstName" />
-                    <operation name="GetFullName" />
                     <operation name="Increment" />
                     <operation name="Decrement" />
                 </operationList>
@@ -20,7 +18,7 @@
         <complexServiceList>
             <complexService name="CsBase" xdt:Locator="Match(name)">
                 <partList>
-                    <partService name="Example" min="0" max="2" xdt:Transform="Insert">
+                    <partService name="Example" min="0" max="1" xdt:Transform="Insert">
                         <propertyTransformation>
                             <simpleTransformer>
                                 <serviceProperty name="AccountId">
@@ -33,17 +31,4 @@
             </complexService>
         </complexServiceList>
     </servicesDescription>
-    <packageDescription>
-        <packageList>
-            <package name="BasePackage" xdt:Locator="Match(name)">
-                <serviceLimitationList>
-                    <globalLimitation>
-                        <group maxCount="2" xdt:Transform="Insert">
-                            <service name="Example" />
-                        </group>
-                    </globalLimitation>
-                </serviceLimitationList>
-            </package>
-        </packageList>
-    </packageDescription>
 </provisioningDescription>

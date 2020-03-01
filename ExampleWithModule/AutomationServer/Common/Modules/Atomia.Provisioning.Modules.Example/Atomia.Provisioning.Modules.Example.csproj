@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ExampleCommand.cs" />
-    <Compile Include="Commands\ExampleCommandBase.cs" />
     <Compile Include="Example.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,7 +63,9 @@
     <Content Include="ResourceDescription.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ServiceDescription.xml" />
+    <Content Include="ServiceDescription.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
