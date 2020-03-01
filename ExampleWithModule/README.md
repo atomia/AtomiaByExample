@@ -11,6 +11,7 @@ Example needs to be installed on default Atomia in order to be tested. Here are 
 1. build project "Atomia.Web.Plugin.Example" located in 
 `ExampleWithModule/HostingControlPanel/Plugins/Atomia.Web.Plugin.Example` 
 and copy binary to `C:\Program Files (x86)\Atomia\HostingControlPanel\bin` in your vagrant environment 
+1. copy menu translation file `NewDefaultMenuRender.resx` from `ExampleWithModule/HostingControlPanel/Frame/App_Data` to `C:\Program Files (x86)\Atomia\HostingControlPanel\App_GlobalResources`
 1. copy `ExampleWithModule/HostingControlPanel/Frame/Themes/NewDefault/Views/Example` to `C:\Program Files (x86)\Atomia\HostingControlPanel\Themes\NewDefault\Views` in your vagrant environment. 
 1. copy transformation files from the folder `ExampleWithModule/HostingControlPanel/Frame/App_Data` to `C:\Program Files (x86)\Atomia\HostingControlPanel\App_Data\Transformation Files` in your vagrant environment 
 1. execute `C:\Program Files (x86)\Atomia\HostingControlPanel\Recreate config files` shortcut 
