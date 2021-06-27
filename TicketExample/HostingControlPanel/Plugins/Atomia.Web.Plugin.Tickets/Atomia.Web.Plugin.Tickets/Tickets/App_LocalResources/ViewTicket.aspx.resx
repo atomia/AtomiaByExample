@@ -53,7 +53,6 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
-
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -112,12 +111,87 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TicketsMenu" xml:space="preserve">
-    <value>Tickets</value>
+  <data name="AddNewReply" xml:space="preserve">
+    <value>Add new reply</value>
+  </data>
+  <data name="AddReplyErrorHeader" xml:space="preserve">
+    <value>Internal error</value>
+  </data>
+  <data name="AddReplyErrorText" xml:space="preserve">
+    <value>An error happend when adding a reply. Make sure, required fields are not empty.</value>
+  </data>
+  <data name="AddReplySuccessHeader" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="AddReplySuccessText" xml:space="preserve">
+    <value>Reply successfully added.</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="AttachmentsCountValidationError" xml:space="preserve">
+    <value>Too many attachments</value>
+  </data>
+  <data name="AttachmentsSizeValidationError" xml:space="preserve">
+    <value>One or more attachments are too large</value>
+  </data>
+  <data name="AttachmentsTypeValidationError" xml:space="preserve">
+    <value>One or more attachments have unsupported file type</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DescriptionNewReply" xml:space="preserve">
+    <value>Use the form below to post new ticket reply.</value>
+  </data>
+  <data name="HeaderText" xml:space="preserve">
+    <value>Ticket Details</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="ReplyAttachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="ReplyDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ReplyFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="ReplyMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TicketAttachement" xml:space="preserve">
+    <value>Attachement:</value>
+  </data>
+  <data name="TicketDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TicketMessage" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="TicketProduct" xml:space="preserve">
+    <value>Product:</value>
+  </data>
+  <data name="TicketStatus" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="TicketSubject" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Ticket Details</value>
   </data>
 </root>
